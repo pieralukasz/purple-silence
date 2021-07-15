@@ -1,0 +1,12 @@
+{
+  "testEnvironment": "./environment",
+  "testRunner": "jest-circus/runner",
+  "verbose": true,
+  "testTimeout": 120000,
+  "reporters": ["detox/runners/jest/streamlineReporter"],
+  "testMatch": ["**/tests/?(*.)+(spec|test).[jt]s?(x)"],
+  "preset": "ts-jest",
+  "transform": {
+    "^.+\\.(t|j)sx?$": "ts-jest"
+  }
+}
