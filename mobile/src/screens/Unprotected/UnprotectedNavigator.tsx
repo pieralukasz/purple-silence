@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   createStackNavigator,
   StackNavigationProp,
@@ -7,10 +7,13 @@ import { RouteProp } from "@react-navigation/native";
 
 import Header from "@components/Header";
 
-import { UnprotectedRoute } from "@screens/routes";
+import { ProtectedRoute, UnprotectedRoute } from "@screens/routes";
 
 import { MainNavigatorParams } from "@screens/MainNavigatorParams";
 import { UnprotectedNavigatorParams } from "@screens/Unprotected/UnprotectedNavigatorParams";
+
+import useUserContext from "@features/User/useUserContext";
+import useResetNavigation from "@hooks/useResetNavigation";
 
 import { ForgotPasswordRoute, SignInRoute, SignUpRoute } from "./routes";
 
@@ -36,6 +39,15 @@ interface UnprotectedNavigatorProps {
 }
 
 const UnprotectedNavigator: React.FC<UnprotectedNavigatorProps> = () => {
+  const resetNavigation = useResetNavigation();
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    if (user) {
+      resetNavigation(ProtectedRoute);
+    }
+  }, [resetNavigation, user]);
+
   return (
     <Stack.Navigator
       initialRouteName={SignInRoute}

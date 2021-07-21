@@ -1,7 +1,7 @@
 import { ProtectedRoute } from "@screens/routes";
-import { testProtectedRoute } from "@screens/Protected/routes";
+import { DashboardRoute } from "./routes";
 
 export type ProtectedNavigatorParams = {
+  [DashboardRoute]: undefined;
   [ProtectedRoute]: undefined;
-  [testProtectedRoute]: undefined;
 };

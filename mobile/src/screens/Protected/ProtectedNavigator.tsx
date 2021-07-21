@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
 
 import {
   createStackNavigator,
@@ -12,10 +11,13 @@ import Header from "@components/Header";
 import useUserContext from "@features/User/useUserContext";
 
 import { MainNavigatorParams } from "@screens/MainNavigatorParams";
-import { testProtectedRoute } from "@screens/Protected/routes";
 import { ProtectedRoute, UnprotectedRoute } from "@screens/routes";
 
 import useResetNavigation from "@hooks/useResetNavigation";
+
+import { DashboardRoute } from "./routes";
+
+import DashboardScreen from "./DashboardScreen";
 
 import { ProtectedNavigatorParams } from "./ProtectedNavigatorParams";
 
@@ -36,9 +38,7 @@ interface ProtectedNavigatorProps {
   route: ProtectedNavigatorRouteProp;
 }
 
-const ProtectedNavigator: React.FC<ProtectedNavigatorProps> = ({
-  navigation,
-}) => {
+const ProtectedNavigator: React.FC<ProtectedNavigatorProps> = () => {
   const resetNavigation = useResetNavigation();
   const { user } = useUserContext();
 
@@ -46,17 +46,13 @@ const ProtectedNavigator: React.FC<ProtectedNavigatorProps> = ({
     if (user === null) {
       resetNavigation(UnprotectedRoute);
     }
-  }, [navigation, resetNavigation, user]);
+  }, [resetNavigation, user]);
 
   return (
     <Stack.Navigator
-      initialRouteName={ProtectedRoute}
+      initialRouteName={DashboardRoute}
       screenOptions={{ headerShown: true, header: () => <Header /> }}>
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name={testProtectedRoute}
-        component={View}
-      />
+      <Stack.Screen name={DashboardRoute} component={DashboardScreen} />
     </Stack.Navigator>
   );
 };

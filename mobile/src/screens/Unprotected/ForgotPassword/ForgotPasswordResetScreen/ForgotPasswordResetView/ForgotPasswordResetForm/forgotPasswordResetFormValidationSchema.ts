@@ -1,9 +1,13 @@
-import { object, SchemaOf, string } from "yup";
+import { object, ref, SchemaOf, string } from "yup";
 
+import passwordValidation from "@utils/passwordValidation/passwordValidation";
 import ForgotPasswordResetFormState from "./ForgotPasswordResetFormState";
 
 export default (): SchemaOf<ForgotPasswordResetFormState> =>
   <SchemaOf<ForgotPasswordResetFormState>>object({
-    password: string().required("REQUIRED"),
-    confirmPassword: string().required("REQUIRED"),
+    password: passwordValidation(),
+    confirmPassword: string().oneOf(
+      [ref("password"), null],
+      "Passwords must match"
+    ),
   });

@@ -7,9 +7,9 @@ import Form from "@components/Form";
 import EmailInputField from "@components/Form/EmailInputField";
 import PhoneNumberField from "@components/Form/PhoneNumberField";
 import PasswordInputField from "@components/Form/PasswordInputField";
-import signInFormValidationSchema from "@screens/Unprotected/SignInScreen/SignInView/SignInForm/signInFormValidationSchema";
 
 import SignUpCreateAccountFormState from "./SignUpCreateAccountFormState";
+import signUpCreateAccountFormValidationSchema from "./signUpCreateAccountFormValidationSchema";
 
 interface SignUpCreateAccountFormProps {
   onSubmit: (data: SignUpCreateAccountFormState) => void;
@@ -23,7 +23,7 @@ const SignUpCreateAccountForm: React.FC<SignUpCreateAccountFormProps> = ({
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<SignUpCreateAccountFormState>({
-    resolver: yupResolver(signInFormValidationSchema()),
+    resolver: yupResolver(signUpCreateAccountFormValidationSchema()),
     mode: "onTouched",
     reValidateMode: "onChange",
   });

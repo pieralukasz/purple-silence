@@ -47,6 +47,7 @@ const TextInputField = <T extends FieldValues>({
           placeholder={placeHolder}
           mode="outlined"
           error={error}
+          autoCapitalize="none"
           autoFocus={autoFocus}
           multiline={multiline}
           disabled={disabled}

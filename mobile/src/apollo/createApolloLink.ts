@@ -5,10 +5,15 @@ import { CognitoUserSession } from "amazon-cognito-identity-js";
 import { createSubscriptionHandshakeLink } from "aws-appsync-subscription-link";
 import { UrlInfo } from "aws-appsync-subscription-link/lib/types";
 
+import {
+  REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL,
+  REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_REGION,
+} from "@env";
+
 const createApolloLink = (session: CognitoUserSession): ApolloLink => {
   const config: UrlInfo = {
-    url: process.env.REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL!,
-    region: process.env.REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_REGION!,
+    url: REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL!,
+    region: REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_REGION!,
     auth: {
       type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
       jwtToken: session.getAccessToken().getJwtToken(),
@@ -34,7 +39,7 @@ const createApolloLink = (session: CognitoUserSession): ApolloLink => {
   };
 
   const httpLink = new HttpLink({
-    uri: process.env.REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL!,
+    uri: REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL!,
     fetch: customFetch,
     useGETForQueries: true,
   });

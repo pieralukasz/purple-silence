@@ -35,7 +35,6 @@ export const analyticsConfig = {
 const configureAws = (): void => {
   Auth.configure(authConfig);
   Analytics.configure(analyticsConfig);
-  console.log("WORDKED");
   Amplify.Logger.LOG_LEVEL = "DEBUG";
 };
 

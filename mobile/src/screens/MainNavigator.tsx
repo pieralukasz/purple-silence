@@ -3,7 +3,7 @@ import { View } from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { ProtectedRoute, UnprotectedRoute, ErrorRoute } from "./routes";
+import { ErrorRoute, ProtectedRoute, UnprotectedRoute } from "./routes";
 
 import ProtectedNavigator from "./Protected/ProtectedNavigator";
 import UnprotectedNavigator from "./Unprotected/UnprotectedNavigator";

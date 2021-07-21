@@ -1,6 +1,11 @@
-const env = process.env.REACT_APP_DIDACTIC_BARNACLE_ENVIRONMENT;
+import {
+  REACT_APP_PURPLE_SILENCE_ENVIRONMENT,
+  REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL,
+} from "@env";
+
+const env = REACT_APP_PURPLE_SILENCE_ENVIRONMENT;
 
 export default {
   development: env?.endsWith("test") || env === "deve",
-  graphqlApi: process.env.REACT_APP_DIDACTIC_BARNACLE_AWS_APPSYNC_URL,
+  graphqlApi: REACT_APP_PURPLE_SILENCE_AWS_APPSYNC_URL,
 };
