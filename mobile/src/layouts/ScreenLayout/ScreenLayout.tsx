@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -8,15 +8,17 @@ import {
   ViewStyle,
   View,
   Pressable,
+  Dimensions,
 } from "react-native";
 import { Text } from "react-native-paper";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-import styles from "@layouts/ScreenLayout/styles";
 import FullScreenPreloader from "@components/FullScreenPreloader/FullScreenPreloader";
-import useKeyboardStatus from "@hooks/useKeyboardStatus";
 import Title from "@components/Title";
+
+import useKeyboardStatus from "@hooks/useKeyboardStatus";
+
+import styles from "./styles";
 
 interface ScreenLayoutProps {
   title?: string;
@@ -42,13 +44,24 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
 
   const { bottom, left, right } = useSafeAreaInsets();
 
+  const [isScroll, setIsScroll] = useState<boolean>(false);
+
+  const checkIfContentIsLessThanWindowHeight = useCallback(
+    (width: number, height: number) => {
+      if (height > Dimensions.get("window").height) {
+        setIsScroll(true);
+      }
+    },
+    []
+  );
+
   return (
     <>
       {loading && <FullScreenPreloader visible={loading} />}
       <Pressable onPress={Keyboard.dismiss} accessible={false}>
         <View
           style={{
-            paddingBottom: bottom,
+            paddingBottom: bottom + (isScroll ? 20 : 0),
             paddingLeft: left,
             paddingRight: right,
           }}>
@@ -60,7 +73,8 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
                 }
               : {})}>
             <ScrollView
-              scrollEnabled={scrollEnabled || isKeyboardOpen}
+              onContentSizeChange={checkIfContentIsLessThanWindowHeight}
+              scrollEnabled={scrollEnabled || isKeyboardOpen || isScroll}
               keyboardShouldPersistTaps="handled"
               style={{
                 ...styles.view,
