@@ -1,18 +1,14 @@
 import React from "react";
 import { View } from "react-native";
-import { Button } from "react-native-paper";
-
-import { Auth } from "aws-amplify";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import ScreenLayout from "@layouts/ScreenLayout";
 
-import attachAccessibilityID from "@utils/attachAccessibilityID";
-
-import styles from "./styles";
-
 const DashboardView: React.FC = () => {
+  const { top } = useSafeAreaInsets();
+
   return (
-    <ScreenLayout title="Index Page">
+    <ScreenLayout viewStyles={{ paddingTop: top + 48 }} title="Index Page">
       <View />
     </ScreenLayout>
   );

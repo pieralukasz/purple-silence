@@ -13,8 +13,7 @@
       "@layouts/*": ["./src/layouts/*"],
       "@screens/*": ["./src/screens/*"],
       "@themes/*": ["./src/themes/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@env": [".env"]
+      "@utils/*": ["./src/utils/*"]
     }
   }
 }

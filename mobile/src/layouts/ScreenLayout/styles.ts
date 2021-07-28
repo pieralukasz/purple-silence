@@ -1,5 +1,8 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import theme from "@themes/defaultTheme";
+
+const getScreenSpace =
+  Platform.OS === "ios" ? { marginHorizontal: 20 } : { paddingHorizontal: 20 };
 
 const styles = StyleSheet.create({
   title: {
@@ -10,9 +13,7 @@ const styles = StyleSheet.create({
     color: theme.colors.placeholder,
     marginBottom: 16,
   },
-  view: {
-    paddingHorizontal: 20,
-  },
+  view: { ...getScreenSpace },
 });
 
 export default styles;

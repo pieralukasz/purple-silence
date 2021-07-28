@@ -20,7 +20,7 @@ import registerCodeCoverageTasks from "@cypress/code-coverage/task";
 
 export default (on: any, config: any): Record<string, string> => {
   config = dotenvPlugin(config, {
-    path: path.resolve(process.cwd(), "..env.test"),
+    path: path.resolve(process.cwd(), ".env.test"),
   });
   config = registerCodeCoverageTasks(on, config);
   config.baseUrl = config.env.BASE_URL;

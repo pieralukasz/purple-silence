@@ -1,4 +1,4 @@
-#!/usr/bin/.env node
+#!/usr/bin/env node
 import "tsconfig-paths/register";
 import "source-map-support/register";
 import * as cdk from "@aws-cdk/core";
@@ -24,6 +24,7 @@ new CloudStack(app, "PurpleSilenceStackDevelopment", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
+  defaultSesSenderEmail: "pieralukasz@gmail.com",
 });
 
 new CloudStack(app, "PurpleSilenceStackTest", {
@@ -33,6 +34,7 @@ new CloudStack(app, "PurpleSilenceStackTest", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
+  defaultSesSenderEmail: "pieralukasz@gmail.com",
 });
 
 new CloudStack(app, "PurpleSilenceStackStaging", {
@@ -42,6 +44,7 @@ new CloudStack(app, "PurpleSilenceStackStaging", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
+  defaultSesSenderEmail: "pieralukasz@gmail.com",
 });
 
 new CloudStack(app, "PurpleSilenceStackProduction", {
@@ -51,4 +54,5 @@ new CloudStack(app, "PurpleSilenceStackProduction", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
+  defaultSesSenderEmail: "pieralukasz@gmail.com",
 });

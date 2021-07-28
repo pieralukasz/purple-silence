@@ -2,10 +2,15 @@ import React from "react";
 import { View } from "react-native";
 
 import { Button, Text } from "react-native-paper";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 import attachAccessibilityID from "@utils/attachAccessibilityID";
 import CommonViewProps from "@interfaces/CommonViewProps";
 import ScreenLayout from "@layouts/ScreenLayout";
+import { NAMESPACE_AUTH } from "@consts/namespaces";
+
+import theme from "@themes/defaultTheme";
 
 import SignInForm from "./SignInForm";
 import SignInFormState from "./SignInForm/SignInFormState";
@@ -22,25 +27,31 @@ const SignInView: React.FC<SignInViewProps> = ({
   onSubmit,
   loading,
 }) => {
+  const { top } = useSafeAreaInsets();
+  const { t } = useTranslation(NAMESPACE_AUTH);
+
   return (
-    <ScreenLayout title="Sign In" loading={loading}>
+    <ScreenLayout
+      viewStyles={{ paddingTop: top + theme.spacing.emptyHeader }}
+      title={t("Sign In")}
+      loading={loading}>
       <SignInForm onSubmit={onSubmit} />
       <View style={styles.forgotPassword}>
         <Button
           {...attachAccessibilityID("forgot-password-button")}
           mode="text"
           onPress={onForgotPassword}>
-          Forgot Password?
+          {t("Forgot Password?")}
         </Button>
       </View>
       <View style={styles.signUp}>
         {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <Text style={styles.signUpText}>Don't have an account?</Text>
+        <Text style={styles.signUpText}>{t("Don't have an account?")}</Text>
         <Button
           {...attachAccessibilityID("go-to-sign-up-page-button")}
           mode="outlined"
           onPress={onSignUp}>
-          SIGN UP
+          {t("Sign Up")}
         </Button>
       </View>
     </ScreenLayout>

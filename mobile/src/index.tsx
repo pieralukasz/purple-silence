@@ -3,6 +3,7 @@ import { AppRegistry, LogBox } from "react-native";
 import App from "./App";
 import { name as appName } from "../app";
 import configureAws from "./awsConfig";
+import "@i18n/instance";
 
 LogBox.ignoreLogs([
   "Warning: componentWillMount is deprecated",

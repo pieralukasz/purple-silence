@@ -96,13 +96,13 @@ yarn cy:mocha:clean
 
 ## Prettier & ESLint
 
-Run Prettier under the `/cypress` directory:
+Run Prettier under the `cypress` directory:
 
 ```
 yarn cy:format
 ```
 
-Run ESLint under the `/cypress` directory:
+Run ESLint under the `cypress` directory:
 
 ```
 yarn cy:lint
@@ -110,10 +110,15 @@ yarn cy:lint
 
 ## Packages included and configured for E2E tests:
 
-- `cypress/code-coverage` - it generates a code coverage report after Cypress tests
-- `cypress-dotenv` - plugin that enables compatability with `dotenv` package
-- `cypress-file-upload` - file upload testing made easy with Cypress 
-- `cypress-xpath` - it adds XPath command to Cypress test runner
-- `eslint-plugin-cypress` - an ESLint plugin for your Cypress tests
-- `faker` - it generates fake data for tests
-- `percy/cypress` - detecting and reviewing visual UI changes by making snapshots
+- [`@cypress/code-coverage`](https://www.npmjs.com/package/@cypress/code-coverage) - it generates a code coverage report after Cypress tests
+- [`@cypress/instrument-cra`](https://www.npmjs.com/package/@cypress/instrument-cra) - instrument code without ejecting react-scripts
+- [`cypress-dotenv`](https://www.npmjs.com/package/cypress-dotenv) - plugin that enables compatability with `dotenv` package
+- [`cypress-file-upload`](https://www.npmjs.com/package/cypress-file-upload) - file upload testing made easy with Cypress
+- [`cypress-localstorage-commands`](https://www.npmjs.com/package/cypress-localstorage-commands) - it allows preserving localStorage between tests
+- [`cypress-xpath`](https://www.npmjs.com/package/cypress-xpath) - it adds XPath command to Cypress test runner
+- [`eslint-plugin-cypress`](https://www.npmjs.com/package/eslint-plugin-cypress) - an ESLint plugin for your Cypress tests
+- [`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests
+- [`mochawesome`](https://www.npmjs.com/package/mochawesome) - a custom reporter for use to generate tests report after test run
+- [`mochawesome-merge`](https://www.npmjs.com/package/mochawesome-merge) - it merges several Mochawesome JSON reports
+- [`mochawesome-report-generator`](https://www.npmjs.com/package/mochawesome-report-generator) - it generates HTML reports from mochawesome reporter.
+- [`@percy/cypress`](https://www.npmjs.com/package/@percy/cypress) - detecting and reviewing visual UI changes by making snapshots

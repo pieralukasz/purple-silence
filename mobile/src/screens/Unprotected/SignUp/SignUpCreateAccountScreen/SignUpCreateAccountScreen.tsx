@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Auth } from "aws-amplify";
+import i18n from "i18next";
 
 import { StackNavigationProp } from "@react-navigation/stack";
 import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
@@ -43,8 +44,6 @@ const SignUpCreateAccountScreen: React.FC<SignUpCreateAccountProps> = ({
     async (userCredential: SignUpCreateAccountFormState) => {
       const { email, password, phoneNumber } = userCredential;
 
-      console.log(email, password, phoneNumber);
-
       try {
         setLoading(true);
         await Auth.signUp({
@@ -53,6 +52,7 @@ const SignUpCreateAccountScreen: React.FC<SignUpCreateAccountProps> = ({
           attributes: {
             email,
             phone_number: removeAllWhitespaces(phoneNumber!),
+            locale: i18n.language,
           },
         });
         navigation.navigate(SignUpVerificationRoute, {

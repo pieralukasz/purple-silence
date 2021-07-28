@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-import { ForgotPasswordParams } from "@screens/Unprotected/ForgotPassword/ForgotPasswordParams";
+import { ForgotPasswordNavigatorParams } from "@screens/Unprotected/ForgotPassword/ForgotPasswordParams";
 import {
   ForgotPasswordResetRoute,
   ForgotPasswordSuccessRoute,
@@ -15,12 +15,15 @@ import useResetNavigation from "@hooks/useResetNavigation";
 import ForgotPasswordResetView from "./ForgotPasswordResetView";
 
 type ForgotPasswordResetNavigationProp = CompositeNavigationProp<
-  StackNavigationProp<ForgotPasswordParams, typeof ForgotPasswordResetRoute>,
+  StackNavigationProp<
+    ForgotPasswordNavigatorParams,
+    typeof ForgotPasswordResetRoute
+  >,
   StackNavigationProp<UnprotectedNavigatorParams, typeof ForgotPasswordRoute>
 >;
 
 type ForgotPasswordResetRouteProp = RouteProp<
-  ForgotPasswordParams,
+  ForgotPasswordNavigatorParams,
   typeof ForgotPasswordResetRoute
 >;
 

@@ -43,11 +43,11 @@ const TextInputField = <T extends FieldValues>({
       <>
         <TextInput
           {...attachAccessibilityID(dataTestId)}
+          autoCapitalize="none"
           label={label}
           placeholder={placeHolder}
           mode="outlined"
           error={error}
-          autoCapitalize="none"
           autoFocus={autoFocus}
           multiline={multiline}
           disabled={disabled}

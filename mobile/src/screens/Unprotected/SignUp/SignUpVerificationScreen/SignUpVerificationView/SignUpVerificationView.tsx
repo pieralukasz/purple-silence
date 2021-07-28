@@ -1,11 +1,14 @@
 import React from "react";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { Button, Text } from "react-native-paper";
 
 import attachAccessibilityID from "@utils/attachAccessibilityID";
 import CommonViewProps from "@interfaces/CommonViewProps";
 import ScreenLayout from "@layouts/ScreenLayout";
+
+import { NAMESPACE_AUTH } from "@consts/namespaces";
 
 import SignUpVerificationForm from "./SignUpVerificationForm";
 import SignUpVerificationFormState from "./SignUpVerificationForm/SignUpVerificationFormState";
@@ -23,17 +26,19 @@ const SignUpVerificationView: React.FC<SignUpVerificationViewProps> = ({
   phoneNumber,
   onResendCode,
 }) => {
+  const { t } = useTranslation(NAMESPACE_AUTH);
+
   return (
-    <ScreenLayout title="Enter verification code" loading={loading}>
+    <ScreenLayout title={t("Enter verification code")} loading={loading}>
       <View style={styles.textContainer}>
         <Text style={styles.textInfo}>
-          A verification code has been sent to:
+          {t("A verification code has been sent to:")}
         </Text>
         <Text style={{ ...styles.textInfo, ...styles.textPhoneNumber }}>
           {phoneNumber}
         </Text>
         <Text style={styles.textInfo}>
-          Please, enter it below, to verify your account.
+          {t("Please, enter it below, to verify your account")}.
         </Text>
       </View>
       <SignUpVerificationForm onSubmit={onSubmit} />
@@ -42,7 +47,7 @@ const SignUpVerificationView: React.FC<SignUpVerificationViewProps> = ({
         mode="outlined"
         onPress={onResendCode}
         style={styles.resendButton}>
-        Resend verification code
+        {t("Resend verification code")}
       </Button>
     </ScreenLayout>
   );

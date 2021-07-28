@@ -5,7 +5,7 @@ import { Construct, IConstruct, Tags } from "@aws-cdk/core";
 import { EnvName } from "@enums/EnvName";
 
 /**
- * Utility, which applies purpose and .env tags to the resources
+ * Utility, which applies purpose and env tags to the resources
  * @param resources - Resources, which shall be tagged
  * @param envName   - Environment name
  * @param purpose   - Purpose of resources

@@ -40,8 +40,8 @@ jobs:
           chmod +x ./.github/wait-for-amplify-job.sh
           ./.github/wait-for-amplify-job.sh $AWS_AMPLIFY_APP_ID $AWS_AMPLIFY_BRANCH_NAME $AWS_AMPLIFY_JOB_COMMIT_ID 180 20
         env:
-          AWS_AMPLIFY_BRANCH_NAME: ${{ .env.AWS_AMPLIFY_BRANCH_NAME }}
-          AWS_AMPLIFY_JOB_COMMIT_ID: ${{ .env.AWS_AMPLIFY_JOB_COMMIT_ID }}
+          AWS_AMPLIFY_BRANCH_NAME: ${{ env.AWS_AMPLIFY_BRANCH_NAME }}
+          AWS_AMPLIFY_JOB_COMMIT_ID: ${{ env.AWS_AMPLIFY_JOB_COMMIT_ID }}
   cypress:
     name: Cypress
     needs: [wait-for-deploy]
@@ -77,7 +77,7 @@ jobs:
           yarn cy:run:smoke
         env:
           AWS_AMPLIFY_APP_ID: ${{ secrets.AWS_AMPLIFY_APP_ID_DEVELOP }}
-          AWS_AMPLIFY_BRANCH_NAME: ${{ .env.AWS_AMPLIFY_BRANCH_NAME }}
+          AWS_AMPLIFY_BRANCH_NAME: ${{ env.AWS_AMPLIFY_BRANCH_NAME }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v1

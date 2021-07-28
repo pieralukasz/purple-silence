@@ -8,10 +8,11 @@ import {
 
 import Header from "@components/Header";
 
-import { ForgotPasswordParams } from "@screens/Unprotected/ForgotPassword/ForgotPasswordParams";
 import { ForgotPasswordRoute } from "@screens/Unprotected/routes";
 import { MainNavigatorParams } from "@screens/MainNavigatorParams";
 import { UnprotectedNavigatorParams } from "@screens/Unprotected/UnprotectedNavigatorParams";
+
+import { ForgotPasswordNavigatorParams } from "./ForgotPasswordNavigatorParams";
 
 import {
   ForgotPasswordEmailRoute,
@@ -25,7 +26,7 @@ import ForgotPasswordVerificationScreen from "./ForgotPasswordVerificationScreen
 import ForgotPasswordSuccessScreen from "./ForgotPasswordSuccessScreen";
 import ForgotPasswordResetScreen from "./ForgotPasswordResetScreen";
 
-const Stack = createStackNavigator<ForgotPasswordParams>();
+const Stack = createStackNavigator<ForgotPasswordNavigatorParams>();
 
 type ForgotPasswordNavigatorNavigationProp = CompositeNavigationProp<
   StackNavigationProp<UnprotectedNavigatorParams, typeof ForgotPasswordRoute>,

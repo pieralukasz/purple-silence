@@ -7,7 +7,7 @@ import { verifyEmailPage } from "../../support/page-objects/methods/verify-email
 import { commonSelectors } from "../../support/page-objects/selectors/common-selectors";
 import { signInPage } from "../../support/page-objects/methods/sign-in-page";
 
-const newUser = createRandomUser();
+const user = createRandomUser();
 
 describe("Sign up page test suite", () => {
   before(() => {
@@ -17,14 +17,9 @@ describe("Sign up page test suite", () => {
   });
 
   it("User is able to see password after clicking show password icon", () => {
-    cy.fillInputField(
-      signUpPageSelectors.passwordInput,
-      newUser.correctPassword
-    );
+    cy.fillInputField(signUpPageSelectors.passwordInput, user.correctPassword);
     cy.clickOn(commonSelectors.showPasswordButton);
-    signInPage.checkThatPasswordFieldContainsCorrectValue(
-      newUser.correctPassword
-    );
+    signInPage.checkThatPasswordFieldContainsCorrectValue(user.correctPassword);
     cy.clickOn(commonSelectors.showPasswordButton);
     signInPage.checkThatPasswordIsNotVisible();
   });
@@ -32,31 +27,22 @@ describe("Sign up page test suite", () => {
   it("User is not able to sign up when email is missing", () => {
     cy.clearInputField(signUpPageSelectors.emailInput);
     cy.percySnapshot("Sign up page test snapshot");
-    cy.fillInputField(signUpPageSelectors.phoneInput, newUser.correctPhone);
-    cy.fillInputField(
-      signUpPageSelectors.passwordInput,
-      newUser.correctPassword
-    );
+    cy.fillInputField(signUpPageSelectors.phoneInput, user.correctPhone);
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkValidation("Email is a required field");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when phone is missing", () => {
-    cy.fillInputField(signUpPageSelectors.emailInput, newUser.correctEmail);
+    cy.fillInputField(signUpPageSelectors.emailInput, user.correctEmail);
     cy.clearInputField(signUpPageSelectors.phoneInput);
-    cy.fillInputField(
-      signUpPageSelectors.passwordInput,
-      newUser.correctPassword
-    );
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkValidation("Phone number is a required field");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password is missing", () => {
-    cy.fillInputField(signUpPageSelectors.emailInput, newUser.correctEmail);
-    cy.fillInputField(signUpPageSelectors.phoneInput, newUser.correctPhone);
+    cy.fillInputField(signUpPageSelectors.phoneInput, user.correctPhone);
     cy.clearInputField(signUpPageSelectors.passwordInput);
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkValidation("Password is a required field");
@@ -64,22 +50,19 @@ describe("Sign up page test suite", () => {
   });
 
   it("User is not able to sign up when email address is incorrect", () => {
-    signUpPage.fillSignUpForm(
-      newUser.wrongEmail,
-      newUser.correctPhone,
-      newUser.correctPassword
-    );
+    cy.clearInputField(signUpPageSelectors.emailInput);
+    cy.fillInputField(signUpPageSelectors.emailInput, user.wrongEmail);
+    cy.fillInputField(signUpPageSelectors.passwordInput, user.correctPassword);
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkValidation("Invalid email address");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when phone number is in a wrong format", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.wrongPhone,
-      newUser.correctPassword
-    );
+    cy.clearInputField(signUpPageSelectors.emailInput);
+    cy.fillInputField(signUpPageSelectors.emailInput, user.correctEmail);
+    cy.clearInputField(signUpPageSelectors.phoneInput);
+    cy.fillInputField(signUpPageSelectors.phoneInput, user.wrongPhone);
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkValidation(
       "Please provide valid phone number starting with the country code, e.g. +44"
@@ -88,61 +71,54 @@ describe("Sign up page test suite", () => {
   });
 
   it("User is not able to sign up when password is too short", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.tooShortPassword
-    );
+    cy.clearInputField(signUpPageSelectors.phoneInput);
+    cy.fillInputField(signUpPageSelectors.phoneInput, user.correctPhone);
+    cy.clearInputField(signUpPageSelectors.passwordInput);
+    cy.fillInputField(signUpPageSelectors.passwordInput, user.tooShortPassword);
     cy.checkValidation("Your password should contain at least 10 characters");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password is too long", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.tooLongPassword
-    );
+    cy.clearInputField(signUpPageSelectors.passwordInput);
+    cy.fillInputField(signUpPageSelectors.passwordInput, user.tooLongPassword);
     cy.checkValidation("Your password is too long, max. 80 characters");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password contains only lower case letters", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.onlyLowerCaseLettersPassword
+    cy.clearInputField(signUpPageSelectors.passwordInput);
+    cy.fillInputField(
+      signUpPageSelectors.passwordInput,
+      user.onlyLowerCaseLettersPassword
     );
     cy.checkValidation("Your password should contain upper case letters");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password contains only upper case letters", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.onlyUpperCaseLettersPassword
+    cy.clearInputField(signUpPageSelectors.passwordInput);
+    cy.fillInputField(
+      signUpPageSelectors.passwordInput,
+      user.onlyUpperCaseLettersPassword
     );
     cy.checkValidation("Your password should contain lower case letters");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is not able to sign up when password doesn't contain digits", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.withoutDigitsPassword
+    cy.clearInputField(signUpPageSelectors.passwordInput);
+    cy.fillInputField(
+      signUpPageSelectors.passwordInput,
+      user.withoutDigitsPassword
     );
     cy.checkValidation("Your password should contain digits");
     cy.checkThatSubpageURLContains("/sign-up");
   });
 
   it("User is able to sign up and see disabled resend email button", () => {
-    signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.correctPassword
-    );
+    cy.clearInputField(signUpPageSelectors.passwordInput);
+    cy.fillInputField(signUpPageSelectors.passwordInput, user.correctPassword);
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkThatSubpageURLContains("/verify-email");
     verifyEmailPage.checkThatResendButtonIsDisabled();
@@ -151,22 +127,22 @@ describe("Sign up page test suite", () => {
   it("User is able to sign up, then sign in and then sign out", () => {
     cy.visit("/sign-up");
     signUpPage.fillSignUpForm(
-      newUser.correctEmail,
-      newUser.correctPhone,
-      newUser.correctPassword
+      user.correctEmail,
+      user.correctPhone,
+      user.correctPassword
     );
     cy.clickOn(signUpPageSelectors.signUpButton);
     cy.checkThatSubpageURLContains("/verify-email")
-      .confirmUserSignUp(newUser.correctEmail)
+      .confirmUserSignUp(user.correctEmail)
       .visit("/sign-in")
       .loginAs({
-        email: newUser.correctEmail,
-        password: newUser.correctPassword,
+        email: user.correctEmail,
+        password: user.correctPassword,
       })
       .checkThatSubpageURLContains("/");
     indexPage.checkIfUserAvatarIsVisible();
     cy.clickOn(indexPageSelectors.userAvatarButton);
-    indexPage.checkIfUserEmailIsShown(newUser.correctEmail);
+    indexPage.checkIfUserEmailIsShown(user.correctEmail);
     cy.clickOn(indexPageSelectors.signOutButtonInUserMenu);
     cy.checkThatSubpageURLContains("/sign-in");
   });

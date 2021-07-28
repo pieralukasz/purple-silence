@@ -1,22 +1,54 @@
-import React from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 import { Provider as PaperProvider } from "react-native-paper";
 import { ApolloProvider } from "@apollo/client";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import theme from "@themes/defaultTheme";
+import defaultTheme from "@themes/defaultTheme";
+import darkTheme from "@themes/darkTheme";
+
+import { THEME } from "@consts/storage";
+
 import UserProvider from "@features/User/UserProvider";
 import useApolloClient from "../../apollo/useApolloClient";
+import { PreferencesContext } from "../Preferences/PreferencesContext";
+import { Theme } from "@enums/Theme";
 
 const Providers: React.FC = ({ children }) => {
   const client = useApolloClient();
 
+  const [isThemeDark, setIsThemeDark] = useState(false);
+
+  const theme = isThemeDark ? darkTheme : defaultTheme;
+
+  const toggleTheme = useCallback(() => {
+    return setIsThemeDark(!isThemeDark);
+  }, [isThemeDark]);
+
+  const preferences = useMemo(
+    () => ({
+      toggleTheme,
+      isThemeDark,
+    }),
+    [toggleTheme, isThemeDark]
+  );
+
+  useEffect(() => {
+    (async () => {
+      const activeTheme = await AsyncStorage.getItem(THEME);
+      setIsThemeDark(activeTheme === Theme.DARK);
+    })();
+  }, []);
+
   return (
     <ApolloProvider client={client}>
       <UserProvider>
-        <PaperProvider theme={theme}>
-          <SafeAreaProvider>{children}</SafeAreaProvider>
-        </PaperProvider>
+        <PreferencesContext.Provider value={preferences}>
+          <PaperProvider theme={theme}>
+            <SafeAreaProvider>{children}</SafeAreaProvider>
+          </PaperProvider>
+        </PreferencesContext.Provider>
       </UserProvider>
     </ApolloProvider>
   );

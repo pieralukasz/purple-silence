@@ -2,8 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Form from "@components/Form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
 
 import PasswordInputField from "@components/Form/PasswordInputField";
+
+import { NAMESPACE_AUTH } from "@consts/namespaces";
 
 import forgotPasswordResetFormValidationSchema from "./forgotPasswordResetFormValidationSchema";
 import ForgotPasswordResetFormState from "./ForgotPasswordResetFormState";
@@ -15,6 +18,8 @@ interface ForgotPasswordResetFormProps {
 const ForgotPasswordResetForm: React.FC<ForgotPasswordResetFormProps> = ({
   onSubmit,
 }) => {
+  const { t } = useTranslation(NAMESPACE_AUTH);
+
   const {
     control,
     handleSubmit,
@@ -28,7 +33,7 @@ const ForgotPasswordResetForm: React.FC<ForgotPasswordResetFormProps> = ({
   return (
     <Form
       submitButton={{
-        text: "Save",
+        text: t("Save"),
         dataTestId: "save-button",
         onSubmit: handleSubmit(onSubmit),
         disabled: !isValid,

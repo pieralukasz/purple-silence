@@ -3,7 +3,7 @@ import { signInPage } from "../../support/page-objects/methods/sign-in-page";
 import { createRandomUser } from "../../support/generate-data";
 import { commonSelectors } from "../../support/page-objects/selectors/common-selectors";
 
-const newUser = createRandomUser();
+const user = createRandomUser();
 
 describe("Sign in page test suite", () => {
   before(() => {
@@ -13,32 +13,21 @@ describe("Sign in page test suite", () => {
   });
 
   it("User is able to see password after clicking show password icon", () => {
-    cy.fillInputField(
-      signInPageSelectors.passwordInput,
-      newUser.correctPassword
-    );
+    cy.fillInputField(signInPageSelectors.passwordInput, user.correctPassword);
     cy.clickOn(commonSelectors.showPasswordButton);
-    signInPage.checkThatPasswordFieldContainsCorrectValue(
-      newUser.correctPassword
-    );
+    signInPage.checkThatPasswordFieldContainsCorrectValue(user.correctPassword);
     cy.clickOn(commonSelectors.showPasswordButton);
     signInPage.checkThatPasswordIsNotVisible();
   });
 
   it("User is not able to sign in when email is missing", () => {
-    cy.clearInputField(signInPageSelectors.emailInput);
-    cy.clearInputField(signInPageSelectors.passwordInput);
-    cy.fillInputField(
-      signInPageSelectors.passwordInput,
-      newUser.correctPassword
-    );
     cy.clickOn(signInPageSelectors.signInButton);
     cy.checkValidation("Email is a required field");
     cy.checkThatSubpageURLContains("/sign-in");
   });
 
   it("User is not able to sign in when password is missing", () => {
-    cy.fillInputField(signInPageSelectors.emailInput, newUser.correctEmail);
+    cy.fillInputField(signInPageSelectors.emailInput, user.correctEmail);
     cy.clearInputField(signInPageSelectors.passwordInput);
     cy.clickOn(signInPageSelectors.signInButton);
     cy.checkValidation("Password is a required field");
@@ -47,11 +36,8 @@ describe("Sign in page test suite", () => {
 
   it("User is not able to sign in when email address is incorrect", () => {
     cy.clearInputField(signInPageSelectors.emailInput);
-    cy.fillInputField(signInPageSelectors.emailInput, newUser.wrongEmail);
-    cy.fillInputField(
-      signInPageSelectors.passwordInput,
-      newUser.correctPassword
-    );
+    cy.fillInputField(signInPageSelectors.emailInput, user.wrongEmail);
+    cy.fillInputField(signInPageSelectors.passwordInput, user.correctPassword);
     cy.clickOn(signInPageSelectors.signInButton);
     cy.checkValidation("Invalid email address");
     cy.checkThatSubpageURLContains("/sign-in");
@@ -59,8 +45,8 @@ describe("Sign in page test suite", () => {
 
   it("User is not able to sign in with non existing user data", () => {
     cy.loginAs({
-      email: newUser.correctEmail,
-      password: newUser.correctPassword,
+      email: user.correctEmail,
+      password: user.correctPassword,
     });
     cy.checkThatSubpageURLContains("/sign-in");
   });

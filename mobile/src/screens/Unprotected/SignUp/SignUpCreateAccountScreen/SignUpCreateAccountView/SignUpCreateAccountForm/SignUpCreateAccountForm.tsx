@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -8,8 +9,11 @@ import EmailInputField from "@components/Form/EmailInputField";
 import PhoneNumberField from "@components/Form/PhoneNumberField";
 import PasswordInputField from "@components/Form/PasswordInputField";
 
-import SignUpCreateAccountFormState from "./SignUpCreateAccountFormState";
+import { NAMESPACE_AUTH, NAMESPACE_FIELD } from "@consts/namespaces";
+
 import signUpCreateAccountFormValidationSchema from "./signUpCreateAccountFormValidationSchema";
+
+import SignUpCreateAccountFormState from "./SignUpCreateAccountFormState";
 
 interface SignUpCreateAccountFormProps {
   onSubmit: (data: SignUpCreateAccountFormState) => void;
@@ -18,6 +22,8 @@ interface SignUpCreateAccountFormProps {
 const SignUpCreateAccountForm: React.FC<SignUpCreateAccountFormProps> = ({
   onSubmit,
 }) => {
+  const { t } = useTranslation([NAMESPACE_AUTH, NAMESPACE_FIELD]);
+
   const {
     control,
     handleSubmit,
@@ -31,7 +37,7 @@ const SignUpCreateAccountForm: React.FC<SignUpCreateAccountFormProps> = ({
   return (
     <Form
       submitButton={{
-        text: "Sign up",
+        text: t("Sign Up"),
         dataTestId: "sign-up-button",
         onSubmit: handleSubmit(onSubmit),
         disabled: !isValid,
@@ -60,8 +66,8 @@ const SignUpCreateAccountForm: React.FC<SignUpCreateAccountFormProps> = ({
         control={control}
         error={errors.confirmPassword}
         errorMessage={errors.confirmPassword?.message}
-        placeholder="Confirm Password"
-        label="Confirm Password"
+        placeholder={t(`${NAMESPACE_FIELD}:Confirm Password`)}
+        label={t(`${NAMESPACE_FIELD}:Confirm Password`)}
       />
     </Form>
   );

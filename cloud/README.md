@@ -14,7 +14,8 @@ Command                                                                 | Descri
 `yarn schema`                                                           | generate stitched GraphQL schema
 `cdk diff [stack]`                                                      | compare deployed stack with current state
 `cdk synth`                                                             | emits the synthesized CloudFormation template
-`cdk destroy [stack]`                                                   | destroy whole CloudFormation stack except for S3 buckets
+`cdk destroy [stack]`                                                   | destroy whole CloudFormation stack except for S3 buckets, user pools, Dynamo tables, log groups and ElasticSearch domains
+`npm run destroy -- --stack [stack] --env [environment_name]`           | destroy whole CloudFormation stack
 
 ## Test stack deployments
 

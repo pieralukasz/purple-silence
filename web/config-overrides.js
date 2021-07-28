@@ -41,7 +41,7 @@ module.exports.jest = (config) => {
     "!src/awsConfig.ts",
     "!src/reportWebVitals.ts",
     "!src/index.tsx",
-    "!src/react-app-.env.d.ts",
+    "!src/react-app-env.d.ts",
     "!src/**/index.ts",
   ];
   config.testTimeout = 15_000;

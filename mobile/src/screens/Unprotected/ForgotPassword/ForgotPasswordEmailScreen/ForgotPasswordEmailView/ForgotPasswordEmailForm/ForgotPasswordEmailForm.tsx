@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
 
 import Form from "@components/Form";
 import EmailInputField from "@components/Form/EmailInputField";
+
+import { NAMESPACE_AUTH } from "@consts/namespaces";
 
 import forgotPasswordEmailFormValidationSchema from "./forgotPasswordEmailFormValidationSchema";
 import ForgotPasswordEmailState from "./ForgotPasswordEmailState";
@@ -15,6 +18,8 @@ interface ForgotPasswordEmailFormProps {
 const ForgotPasswordEmailForm: React.FC<ForgotPasswordEmailFormProps> = ({
   onSubmit,
 }) => {
+  const { t } = useTranslation(NAMESPACE_AUTH);
+
   const {
     control,
     handleSubmit,
@@ -27,7 +32,7 @@ const ForgotPasswordEmailForm: React.FC<ForgotPasswordEmailFormProps> = ({
   return (
     <Form
       submitButton={{
-        text: "Send verification code",
+        text: t("Send verification code"),
         dataTestId: "forgot-password-button",
         disabled: !isValid,
         onSubmit: handleSubmit(onSubmit),

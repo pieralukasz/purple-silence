@@ -1,9 +1,12 @@
 import React from "react";
 import { Button, Text } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 
 import attachAccessibilityID from "@utils/attachAccessibilityID";
 import CommonViewProps from "@interfaces/CommonViewProps";
 import ScreenLayout from "@layouts/ScreenLayout";
+
+import { NAMESPACE_AUTH } from "@consts/namespaces";
 
 import ForgotPasswordResetForm from "./ForgotPasswordResetForm";
 import ForgotPasswordResetFormState from "./ForgotPasswordResetForm/ForgotPasswordResetFormState";
@@ -19,11 +22,14 @@ const ForgotPasswordResetView: React.FC<ForgotPasswordResetViewProps> = ({
   onCancel,
   loading,
 }) => {
+  const { t } = useTranslation(NAMESPACE_AUTH);
+
   return (
     <ScreenLayout title="Create new password" loading={loading}>
       <Text style={styles.textInfo}>
-        Your password must be 10 or more characters long & contain a mix of
-        upper & lower case letters, numbers & symbols.
+        {t(
+          "Your password must be 10 or more characters long & contain a mix of upper & lower case letters, numbers & symbols."
+        )}
       </Text>
       <ForgotPasswordResetForm onSubmit={onSubmit} />
       <Button
@@ -31,7 +37,7 @@ const ForgotPasswordResetView: React.FC<ForgotPasswordResetViewProps> = ({
         mode="outlined"
         onPress={onCancel}
         style={styles.cancelButton}>
-        Cancel
+        {t("Cancel")}
       </Button>
     </ScreenLayout>
   );

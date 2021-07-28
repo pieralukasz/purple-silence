@@ -7,51 +7,36 @@ describe("Index page test suite", () => {
   });
 
   context("User is able to navigate through the side menu", () => {
-    it("User is able to open settings page", () => {
+    it("User is able to open settings page and open/close side menu there", () => {
       indexPage.openSideMenu();
       indexPage.clickSettingsButton();
       indexPage.checkIfSideMenuIsClosed();
       cy.checkThatSubpageURLContains("/settings");
-    });
-
-    it("User is able to open and close the side menu on settings page", () => {
       indexPage.openSideMenu();
       indexPage.checkIfSideMenuIsOpened();
       indexPage.closeSideMenu();
       indexPage.checkIfSideMenuIsClosed();
     });
 
-    it("User is able to open help page", () => {
+    it("User is able to open help page and open/close side menu there", () => {
       indexPage.openSideMenu();
       indexPage.clickHelpButton();
       indexPage.checkIfSideMenuIsClosed();
       cy.checkThatSubpageURLContains("/help");
-    });
-
-    it("User is able to open and close the side menu on help page", () => {
       indexPage.openSideMenu();
       indexPage.checkIfSideMenuIsOpened();
       indexPage.closeSideMenu();
       indexPage.checkIfSideMenuIsClosed();
     });
 
-    it("User is able to click menu app logo to be redirected to index page", () => {
+    it("User is able to open index page and open/close side menu there", () => {
       indexPage.openSideMenu();
       indexPage.clickLogoInSideMenu();
       indexPage.checkIfSideMenuIsClosed();
-      cy.checkThatSubpageURLContains("/");
-    });
-
-    it("User is able to open and close the side menu on index page", () => {
       indexPage.openSideMenu();
       indexPage.checkIfSideMenuIsOpened();
       indexPage.closeSideMenu();
       indexPage.checkIfSideMenuIsClosed();
-    });
-
-    it("User is moved back to index page when he tries to open verify-email page without email", () => {
-      cy.visit("/verify-email");
-      cy.checkThatSubpageURLContains("/");
     });
   });
 
@@ -62,7 +47,6 @@ describe("Index page test suite", () => {
       indexPage.checkIfSideMenuIsClosed();
       cy.checkThatSubpageURLContains("/settings");
       indexPage.clickLogoInTopAppBar();
-      cy.checkThatSubpageURLContains("/");
     });
 
     it("User is able to click app logo to be redirected to index page from Help page", () => {
@@ -71,7 +55,6 @@ describe("Index page test suite", () => {
       indexPage.checkIfSideMenuIsClosed();
       cy.checkThatSubpageURLContains("/help");
       indexPage.clickLogoInTopAppBar();
-      cy.checkThatSubpageURLContains("/");
     });
 
     it("User is able to open sing in page", () => {

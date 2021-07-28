@@ -9,6 +9,7 @@ declare global {
     interface ThemeSpacing {
       spacing: {
         default: number;
+        emptyHeader: number;
       };
     }
     interface Theme {
@@ -23,6 +24,7 @@ declare global {
 
 const theme = {
   ...DefaultTheme,
+  dark: false,
   colors: {
     ...DefaultTheme.colors,
     error: "#d90027",
@@ -34,6 +36,7 @@ const theme = {
   },
   spacing: {
     default: 16,
+    emptyHeader: 48,
   },
 };
 

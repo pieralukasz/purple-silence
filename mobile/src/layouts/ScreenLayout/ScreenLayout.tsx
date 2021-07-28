@@ -13,6 +13,7 @@ import {
 import { Text } from "react-native-paper";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import FullScreenPreloader from "@components/FullScreenPreloader/FullScreenPreloader";
 import Title from "@components/Title";
 
@@ -74,7 +75,7 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
               : {})}>
             <ScrollView
               onContentSizeChange={checkIfContentIsLessThanWindowHeight}
-              scrollEnabled={scrollEnabled || isKeyboardOpen || isScroll}
+              scrollEnabled={scrollEnabled || isKeyboardOpen}
               keyboardShouldPersistTaps="handled"
               style={{
                 ...styles.view,

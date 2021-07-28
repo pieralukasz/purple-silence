@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
 
 import Form from "@components/Form";
 import VerificationCodeInputField from "@components/Form/VerificationCodeInputField";
+
+import { NAMESPACE_AUTH } from "@consts/namespaces";
 
 import signUpVerificationFormValidationSchema from "./signUpVerificationFormValidationSchema";
 import SignUpVerificationFormState from "./SignUpVerificationFormState";
@@ -15,6 +18,8 @@ interface SignUpVerificationFormProps {
 const SignUpVerificationForm: React.FC<SignUpVerificationFormProps> = ({
   onSubmit,
 }) => {
+  const { t } = useTranslation(NAMESPACE_AUTH);
+
   const {
     control,
     handleSubmit,
@@ -28,7 +33,7 @@ const SignUpVerificationForm: React.FC<SignUpVerificationFormProps> = ({
   return (
     <Form
       submitButton={{
-        text: "Submit",
+        text: t("Submit"),
         dataTestId: "sign-up-verification-button",
         disabled: !isValid,
         onSubmit: handleSubmit(onSubmit),

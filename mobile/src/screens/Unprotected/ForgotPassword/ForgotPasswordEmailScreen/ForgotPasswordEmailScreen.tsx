@@ -7,7 +7,7 @@ import { UnprotectedNavigatorParams } from "@screens/Unprotected/UnprotectedNavi
 
 import useResetNavigation from "@hooks/useResetNavigation";
 
-import { ForgotPasswordParams } from "../ForgotPasswordParams";
+import { ForgotPasswordNavigatorParams } from "../ForgotPasswordNavigatorParams";
 import {
   ForgotPasswordEmailRoute,
   ForgotPasswordVerificationRoute,
@@ -16,12 +16,15 @@ import {
 import ForgotPasswordEmailView from "./ForgotPasswordEmailView";
 
 type ForgotPasswordEmailNavigationProp = CompositeNavigationProp<
-  StackNavigationProp<ForgotPasswordParams, typeof ForgotPasswordEmailRoute>,
+  StackNavigationProp<
+    ForgotPasswordNavigatorParams,
+    typeof ForgotPasswordEmailRoute
+  >,
   StackNavigationProp<UnprotectedNavigatorParams, typeof ForgotPasswordRoute>
 >;
 
 type ForgotPasswordEmailRouteProp = RouteProp<
-  ForgotPasswordParams,
+  ForgotPasswordNavigatorParams,
   typeof ForgotPasswordEmailRoute
 >;
 

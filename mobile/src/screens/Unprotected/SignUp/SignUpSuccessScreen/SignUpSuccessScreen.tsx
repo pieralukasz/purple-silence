@@ -1,12 +1,15 @@
 import React from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RouteProp } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 
 import SuccessScreen from "@screens/Common/SuccessScreen";
 
 import { SignUpNavigatorParams } from "@screens/Unprotected/SignUp/SignUpNavigatorParams";
 import { SignUpSuccessRoute } from "@screens/Unprotected/SignUp/routes";
 import { SignInRoute } from "@screens/Unprotected/routes";
+
+import { NAMESPACE_AUTH, NAMESPACE_COMMON } from "@consts/namespaces";
 
 import useResetNavigation from "@hooks/useResetNavigation";
 
@@ -26,14 +29,16 @@ interface SignUpSuccessProps {
 }
 
 const SignUpSuccessScreen: React.FC<SignUpSuccessProps> = () => {
+  const { t } = useTranslation([NAMESPACE_AUTH, NAMESPACE_COMMON]);
+
   const resetNavigation = useResetNavigation();
 
   return (
     <SuccessScreen
-      title="Successfully verified"
+      title={t(`${NAMESPACE_COMMON}:Successfully verified`)}
       submitButton={{
         onSubmit: () => resetNavigation(SignInRoute),
-        text: "Go to sign in",
+        text: t("Go to sign in"),
         dataTestId: "sign-in-button",
       }}
     />

@@ -3,16 +3,16 @@ import { indexPage } from "../../support/page-objects/methods/index-page";
 import { settingsPage } from "../../support/page-objects/methods/settings-page";
 import { settingsPageSelectors } from "../../support/page-objects/selectors/settings-page";
 
-const normalUser = createRandomUser();
+const user = createRandomUser();
 
 describe("Settings page test suite", () => {
   before(() => {
     cy.setLanguage("en");
     cy.visit("/sign-in");
-    cy.createNormalUserWithPassword(normalUser.correctEmail);
+    cy.createUserWithPassword(user.correctEmail);
     cy.loginAs({
-      email: normalUser.correctEmail,
-      password: normalUser.correctPassword,
+      email: user.correctEmail,
+      password: user.correctPassword,
     });
     indexPage.openSideMenu();
     indexPage.clickSettingsButton();

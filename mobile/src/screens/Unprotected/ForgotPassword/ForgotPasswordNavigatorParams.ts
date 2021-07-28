@@ -6,7 +6,7 @@ import {
   ForgotPasswordVerificationRoute,
 } from "./routes";
 
-export type ForgotPasswordParams = {
+export type ForgotPasswordNavigatorParams = {
   [ForgotPasswordRoute]: undefined;
   [ForgotPasswordEmailRoute]: undefined;
   [ForgotPasswordVerificationRoute]: undefined;

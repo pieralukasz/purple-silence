@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { ForgotPasswordParams } from "@screens/Unprotected/ForgotPassword/ForgotPasswordParams";
+import { ForgotPasswordNavigatorParams } from "@screens/Unprotected/ForgotPassword/ForgotPasswordNavigatorParams";
 import {
   ForgotPasswordResetRoute,
   ForgotPasswordVerificationRoute,
@@ -11,12 +11,12 @@ import {
 import ForgotPasswordVerificationView from "./ForgotPasswordVerificationView";
 
 type ForgotPasswordVerificationNavigationProp = StackNavigationProp<
-  ForgotPasswordParams,
+  ForgotPasswordNavigatorParams,
   typeof ForgotPasswordVerificationRoute
 >;
 
 type ForgotPasswordVerificationRouteProp = RouteProp<
-  ForgotPasswordParams,
+  ForgotPasswordNavigatorParams,
   typeof ForgotPasswordVerificationRoute
 >;
 

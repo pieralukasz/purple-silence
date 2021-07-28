@@ -1,4 +1,4 @@
-import Amplify, { Analytics, Auth } from "aws-amplify";
+import Amplify, { Auth, Analytics } from "aws-amplify";
 
 import {
   REACT_APP_PURPLE_SILENCE_AWS_COGNITO_IDENTITY_POOL,

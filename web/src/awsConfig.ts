@@ -1,9 +1,8 @@
-import Amplify, { Analytics, Auth } from "aws-amplify";
+import Amplify, { Auth, Analytics } from "aws-amplify";
 
 export const authConfig = {
   Auth: {
-    identityPoolId:
-      process.env.REACT_APP_PURPLE_SILENCE_AWS_COGNITO_IDENTITY_POOL,
+    identityPoolId: process.env.REACT_APP_PURPLE_SILENCE_AWS_COGNITO_IDENTITY_POOL,
     region: process.env.REACT_APP_PURPLE_SILENCE_AWS_COGNITO_REGION,
     userPoolId: process.env.REACT_APP_PURPLE_SILENCE_AWS_COGNITO_USER_POOL_ID,
     userPoolWebClientId:

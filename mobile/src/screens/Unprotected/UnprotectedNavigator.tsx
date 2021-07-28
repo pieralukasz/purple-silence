@@ -52,7 +52,11 @@ const UnprotectedNavigator: React.FC<UnprotectedNavigatorProps> = () => {
     <Stack.Navigator
       initialRouteName={SignInRoute}
       screenOptions={{ headerShown: true, header: () => <Header /> }}>
-      <Stack.Screen name={SignInRoute} component={SignInScreen} />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name={SignInRoute}
+        component={SignInScreen}
+      />
       <Stack.Screen
         options={{ headerShown: false }}
         name={SignUpRoute}
