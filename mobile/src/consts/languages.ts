@@ -1,5 +1,7 @@
+import { Language } from "@enums/Language";
+
 export default [
-  { key: "ar", label: "عربى" },
-  { key: "en", label: "English" },
-  { key: "pl", label: "Polski" },
+  { key: Language.ARABIC, label: "عربى" },
+  { key: Language.ENGLISH, label: "English" },
+  { key: Language.POLISH, label: "Polski" },
 ];

@@ -69,7 +69,9 @@ const ProtectedNavigator: React.FC<ProtectedNavigatorProps> = () => {
       initialRouteName={DashboardRoute}
       tabBarOptions={{
         style: {
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.dark
+            ? theme.customColors.gray
+            : theme.customColors.white,
           height:
             TAB_HEIGHT +
             insets.bottom +
@@ -83,7 +85,9 @@ const ProtectedNavigator: React.FC<ProtectedNavigatorProps> = () => {
         },
         tabStyle: {
           ...styles.tabStyle,
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.dark
+            ? theme.customColors.gray
+            : theme.customColors.white,
           paddingBottom:
             insets.bottom > 0
               ? 0

@@ -40,6 +40,7 @@
     "aws-amplify": "^4.1.1",
     "aws-appsync-auth-link": "^3.0.4",
     "aws-appsync-subscription-link": "^3.0.6",
+    "deepmerge": "^4.2.2",
     "expo-secure-store": "^10.1.0",
     "google-libphonenumber": "^3.2.21",
     "i18next": "^20.3.3",

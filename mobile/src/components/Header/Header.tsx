@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { View } from "react-native";
-import { IconButton } from "react-native-paper";
+import { IconButton, useTheme } from "react-native-paper";
 
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -13,6 +13,7 @@ import styles from "./styles";
 const Header: React.FC = () => {
   const navigation = useNavigation();
   const { top } = useSafeAreaInsets();
+  const theme = useTheme();
 
   const backButtonPress = useCallback(() => {
     if (!navigation) {
@@ -32,7 +33,15 @@ const Header: React.FC = () => {
           <IconButton
             {...attachAccessibilityID("back-button")}
             onPress={backButtonPress}
-            icon={ArrowLeft}
+            icon={() => (
+              <ArrowLeft
+                fill={
+                  theme.dark
+                    ? theme.customColors.white
+                    : theme.customColors.black
+                }
+              />
+            )}
           />
         ) : (
           <View style={styles.headerEmpty} />

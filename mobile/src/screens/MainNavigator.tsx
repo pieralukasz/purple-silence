@@ -9,22 +9,14 @@ import ProtectedNavigator from "./Protected/ProtectedNavigator";
 import UnprotectedNavigator from "./Unprotected/UnprotectedNavigator";
 
 import { MainNavigatorParams } from "./MainNavigatorParams";
-import { useTheme } from "react-native-paper";
 
 const Stack = createStackNavigator<MainNavigatorParams>();
 
 const MainNavigator: React.FC = () => {
-  const theme = useTheme();
-
   return (
     <Stack.Navigator
       initialRouteName={UnprotectedRoute}
-      screenOptions={{
-        headerShown: false,
-        cardStyle: {
-          backgroundColor: theme.colors.background,
-        },
-      }}
+      screenOptions={{ headerShown: false }}
       headerMode="screen">
       <Stack.Screen name={ProtectedRoute} component={ProtectedNavigator} />
       <Stack.Screen name={UnprotectedRoute} component={UnprotectedNavigator} />

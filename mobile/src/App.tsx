@@ -1,45 +1,33 @@
 import React, { useEffect } from "react";
-import { Platform, StatusBar } from "react-native";
 
 import i18n from "i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NavigationContainer } from "@react-navigation/native";
+
+import StatusBar from "@components/StatusBar";
 
 import Providers from "@features/Providers";
 import MainNavigator from "@screens/MainNavigator";
-import theme from "@themes/defaultTheme";
 
 import { LANGUAGE } from "@consts/storage";
-
-import { rootNavigationRef } from "./RootNavigation";
+import { Language } from "@enums/Language";
 
 const App: React.FC = () => {
   useEffect(() => {
     (async () => {
       const language = await AsyncStorage.getItem(LANGUAGE);
       if (language) {
-        i18n.changeLanguage(language);
+        await i18n.changeLanguage(language);
       } else {
-        i18n.changeLanguage("en");
+        await i18n.changeLanguage(Language.ENGLISH);
       }
     })();
   }, []);
 
   return (
-    <>
-      <StatusBar
-        barStyle={Platform.select({
-          android: "light-content",
-          ios: "dark-content",
-        })}
-        backgroundColor={theme.colors.primary}
-      />
-      <Providers>
-        <NavigationContainer ref={rootNavigationRef}>
-          <MainNavigator />
-        </NavigationContainer>
-      </Providers>
-    </>
+    <Providers>
+      <StatusBar />
+      <MainNavigator />
+    </Providers>
   );
 };
 

@@ -17,8 +17,6 @@ const backendOptions = {
   allowedAddOrUpdateHosts: ["localhost"],
 };
 
-console.log(backendOptions);
-
 i18n
   .use(Locize)
   .use(initReactI18next)

@@ -13,6 +13,7 @@ import { PreferencesContext } from "@features/Preferences/PreferencesContext";
 import { SettingsRoute } from "@screens/Protected/routes";
 
 import { LANGUAGE, THEME } from "@consts/storage";
+import { Language } from "@enums/Language";
 
 import { SettingsNotificationRoute } from "@screens/Protected/Settings/routes";
 import { SettingsNavigatorParams } from "@screens/Protected/Settings/SettingsNavigatorParams";
@@ -43,7 +44,7 @@ const SettingsMainScreen: React.FC<SettingsProps> = ({ navigation }) => {
 
   const changeLanguage = useCallback(async (language: string) => {
     await AsyncStorage.setItem(LANGUAGE, language);
-    I18nManager.forceRTL(language === "ar");
+    I18nManager.forceRTL(language === Language.ARABIC);
     RNRestart.Restart();
   }, []);
 

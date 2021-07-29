@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { Text, Divider, useTheme } from "react-native-paper";
+import { Text, Divider } from "react-native-paper";
 
 import attachAccessibilityID from "@utils/attachAccessibilityID";
 
@@ -21,16 +21,12 @@ const Selector: React.FC<SelectorProps> = ({
   value,
   dataTestId,
 }) => {
-  const theme = useTheme();
-
   return (
     <TouchableOpacity
       {...attachAccessibilityID(dataTestId)}
       style={styles.selector}
       onPress={onPress}>
-      <Text style={{ ...styles.title, color: theme.colors.primary }}>
-        {title}
-      </Text>
+      <Text style={styles.title}>{title}</Text>
       <Text style={styles.text}>{reference}</Text>
       {value && <Text style={styles.value}>{value}</Text>}
       <Divider style={styles.divider} />

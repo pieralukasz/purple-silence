@@ -1,5 +1,6 @@
 import React from "react";
-import { PixelRatio, Pressable, Text, View, ViewStyle } from "react-native";
+import { PixelRatio, Pressable, View, ViewStyle } from "react-native";
+import { Text } from "react-native-paper";
 import theme from "@themes/defaultTheme";
 
 import attachAccessibilityID from "@utils/attachAccessibilityID";
@@ -11,6 +12,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   borderColor,
   color = theme.colors.primary,
   containerStyle,
+  dataTestId,
   disabled = false,
   id,
   label,
@@ -19,7 +21,6 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   onPress,
   selected = false,
   size = 24,
-  dataTestId,
 }) => {
   const borderWidth = PixelRatio.roundToNearestPixel(size * 0.1);
   const sizeHalf = PixelRatio.roundToNearestPixel(size * 0.5);

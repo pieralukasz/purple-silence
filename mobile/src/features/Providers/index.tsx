@@ -4,16 +4,19 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { ApolloProvider } from "@apollo/client";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationContainer } from "@react-navigation/native";
 
 import defaultTheme from "@themes/defaultTheme";
 import darkTheme from "@themes/darkTheme";
+import { Theme } from "@enums/Theme";
 
 import { THEME } from "@consts/storage";
 
 import UserProvider from "@features/User/UserProvider";
 import useApolloClient from "../../apollo/useApolloClient";
 import { PreferencesContext } from "../Preferences/PreferencesContext";
-import { Theme } from "@enums/Theme";
+
+import { rootNavigationRef } from "../../RootNavigation";
 
 const Providers: React.FC = ({ children }) => {
   const client = useApolloClient();
@@ -46,7 +49,11 @@ const Providers: React.FC = ({ children }) => {
       <UserProvider>
         <PreferencesContext.Provider value={preferences}>
           <PaperProvider theme={theme}>
-            <SafeAreaProvider>{children}</SafeAreaProvider>
+            <SafeAreaProvider>
+              <NavigationContainer ref={rootNavigationRef} theme={theme}>
+                {children}
+              </NavigationContainer>
+            </SafeAreaProvider>
           </PaperProvider>
         </PreferencesContext.Provider>
       </UserProvider>

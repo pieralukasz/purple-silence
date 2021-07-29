@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     paddingTop: theme.spacing.default * 1.5,
   },
   title: {
+    color: theme.colors.primary,
     fontWeight: "500",
   },
   text: {

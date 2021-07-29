@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
   },
   label: {
-    fontSize: 14,
+    fontSize: theme.typography.fontSize * 0.875,
   },
 });
 
