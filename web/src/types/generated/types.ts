@@ -16,6 +16,13 @@ export type Scalars = {
   AWSDateTime: any;
 };
 
+export type CreateUserInput = {
+  email: Scalars["String"];
+  phoneNumber: Scalars["String"];
+  password: Scalars["String"];
+  verified?: Maybe<Scalars["Boolean"]>;
+};
+
 export type Feedback = {
   __typename?: "Feedback";
   PK: Scalars["ID"];
@@ -29,19 +36,53 @@ export type FeedbackInput = {
   description: Scalars["String"];
 };
 
+export type FilterBy = {
+  verified?: Maybe<Scalars["Boolean"]>;
+  enabled?: Maybe<Scalars["Boolean"]>;
+};
+
 export type GetAllFeedbacksResponse = {
   __typename?: "GetAllFeedbacksResponse";
   items: Array<Feedback>;
   totalCount: Scalars["Int"];
 };
 
+export type GetUsersArgs = {
+  searchBy?: Maybe<Scalars["String"]>;
+  limit: Scalars["Int"];
+  paginationToken?: Maybe<Scalars["String"]>;
+  filterBy?: Maybe<FilterBy>;
+};
+
+export type GetUsersResponse = {
+  __typename?: "GetUsersResponse";
+  items: Array<User>;
+  paginationToken?: Maybe<Scalars["String"]>;
+  estimatedNumberOfUsers?: Maybe<Scalars["Int"]>;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   sendFeedback: Feedback;
+  updateUser: User;
+  createUser: User;
+  setUserStatus: User;
 };
 
 export type MutationSendFeedbackArgs = {
   feedback: FeedbackInput;
+};
+
+export type MutationUpdateUserArgs = {
+  updateUserInput?: Maybe<UpdateUserInput>;
+};
+
+export type MutationCreateUserArgs = {
+  createUserInput?: Maybe<CreateUserInput>;
+};
+
+export type MutationSetUserStatusArgs = {
+  statusInput?: Maybe<StatusInput>;
 };
 
 export type PaginationInput = {
@@ -52,8 +93,34 @@ export type PaginationInput = {
 export type Query = {
   __typename?: "Query";
   getAllFeedbacks: GetAllFeedbacksResponse;
+  getUsers: GetUsersResponse;
 };
 
 export type QueryGetAllFeedbacksArgs = {
   paginationInput: PaginationInput;
+};
+
+export type QueryGetUsersArgs = {
+  getUsersArgs?: Maybe<GetUsersArgs>;
+};
+
+export type StatusInput = {
+  id: Scalars["ID"];
+  enabled: Scalars["Boolean"];
+};
+
+export type UpdateUserInput = {
+  id: Scalars["ID"];
+  email?: Maybe<Scalars["String"]>;
+  phoneNumber?: Maybe<Scalars["String"]>;
+};
+
+export type User = {
+  __typename?: "User";
+  id: Scalars["ID"];
+  email: Scalars["String"];
+  phoneNumber: Scalars["String"];
+  enabled: Scalars["Boolean"];
+  verified: Scalars["Boolean"];
+  updatedAt: Scalars["String"];
 };

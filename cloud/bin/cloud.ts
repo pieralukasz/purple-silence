@@ -24,7 +24,7 @@ new CloudStack(app, "PurpleSilenceStackDevelopment", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
-  defaultSesSenderEmail: "pieralukasz@gmail.com",
+  defaultSesSenderEmail: "l.piera@codeandpepper.com",
 });
 
 new CloudStack(app, "PurpleSilenceStackTest", {
@@ -34,7 +34,7 @@ new CloudStack(app, "PurpleSilenceStackTest", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
-  defaultSesSenderEmail: "pieralukasz@gmail.com",
+  defaultSesSenderEmail: "l.piera@codeandpepper.com",
 });
 
 new CloudStack(app, "PurpleSilenceStackStaging", {
@@ -44,7 +44,7 @@ new CloudStack(app, "PurpleSilenceStackStaging", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
-  defaultSesSenderEmail: "pieralukasz@gmail.com",
+  defaultSesSenderEmail: "l.piera@codeandpepper.com",
 });
 
 new CloudStack(app, "PurpleSilenceStackProduction", {
@@ -54,5 +54,5 @@ new CloudStack(app, "PurpleSilenceStackProduction", {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
   },
-  defaultSesSenderEmail: "pieralukasz@gmail.com",
+  defaultSesSenderEmail: "l.piera@codeandpepper.com",
 });

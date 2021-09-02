@@ -24,6 +24,7 @@ const AppShell: React.FC = ({ children }) => {
     Paths.CONFIRM_RESET_PASSWORD_PATH,
     Paths.CONFIRM_SIGNUP_PATH,
     Paths.CREATE_NEW_PASSWORD_PATH,
+    Paths.REQUEST_NEW_PASSWORD_PATH,
     Paths.FORGOT_PASSWORD_PATH,
     Paths.SIGN_IN_PATH,
     Paths.SIGN_OUT_PATH,

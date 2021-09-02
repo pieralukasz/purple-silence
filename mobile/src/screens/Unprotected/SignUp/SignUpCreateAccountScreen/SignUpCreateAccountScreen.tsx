@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { Auth } from "aws-amplify";
+import { useTranslation } from "react-i18next";
 
 import { StackNavigationProp } from "@react-navigation/stack";
-import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
+import { CompositeNavigationProp } from "@react-navigation/native";
 import { SignUpNavigatorParams } from "@screens/Unprotected/SignUp/SignUpNavigatorParams";
 import {
   SignUpCreateAccountRoute,
@@ -23,19 +24,14 @@ type SignUpCreateAccountNavigationProp = CompositeNavigationProp<
   StackNavigationProp<UnprotectedNavigatorParams, typeof SignUpRoute>
 >;
 
-type SignUpCreateAccountRouteProp = RouteProp<
-  SignUpNavigatorParams,
-  typeof SignUpCreateAccountRoute
->;
-
 interface SignUpCreateAccountProps {
   navigation: SignUpCreateAccountNavigationProp;
-  route: SignUpCreateAccountRouteProp;
 }
 
 const SignUpCreateAccountScreen: React.FC<SignUpCreateAccountProps> = ({
   navigation,
 }) => {
+  const { i18n } = useTranslation();
   const resetNavigation = useResetNavigation();
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -47,21 +43,22 @@ const SignUpCreateAccountScreen: React.FC<SignUpCreateAccountProps> = ({
         setLoading(true);
         await Auth.signUp({
           password: password.trim(),
-          username: email,
+          username: email.toLowerCase(),
           attributes: {
             email,
             phone_number: removeAllWhitespaces(phoneNumber!),
+            locale: i18n.language,
           },
         });
         navigation.navigate(SignUpVerificationRoute, {
-          phoneNumber,
+          email,
         });
         setLoading(false);
-      } catch {
+      } catch (e) {
         setLoading(false);
       }
     },
-    [navigation]
+    [i18n.language, navigation]
   );
 
   return (

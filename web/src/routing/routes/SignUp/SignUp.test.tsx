@@ -31,7 +31,6 @@ describe("<SignUp />", () => {
   beforeAll(() => {
     Analytics.record = jest.fn();
   });
-
   it("should call Auth.signUp() function on form submit", async () => {
     Auth.signUp = jest.fn();
 
@@ -43,8 +42,13 @@ describe("<SignUp />", () => {
     const phoneInput = await screen.findByPlaceholderText(/Mobile phone/i);
     expect(phoneInput).toBeInTheDocument();
 
-    const passwordInput = await screen.findByPlaceholderText(/Password/i);
+    const passwordInput = await screen.findByPlaceholderText(/^Password/i);
     expect(passwordInput).toBeInTheDocument();
+
+    const confirmPasswordInput = await screen.findByPlaceholderText(
+      /Confirm password/i
+    );
+    expect(confirmPasswordInput).toBeInTheDocument();
 
     const signUpButton = await screen.findByText(/Sign Up/i);
     expect(signUpButton).toBeInTheDocument();
@@ -53,6 +57,10 @@ describe("<SignUp />", () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
       fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
+      fireEvent.change(confirmPasswordInput, {
+        target: { value: "Test123456" },
+      });
+
       fireEvent.click(signUpButton);
     });
 
@@ -82,8 +90,13 @@ describe("<SignUp />", () => {
     const phoneInput = await screen.findByPlaceholderText(/Mobile phone/i);
     expect(phoneInput).toBeInTheDocument();
 
-    const passwordInput = await screen.findByPlaceholderText(/Password/i);
+    const passwordInput = await screen.findByPlaceholderText(/^Password/i);
     expect(passwordInput).toBeInTheDocument();
+
+    const confirmPasswordInput = await screen.findByPlaceholderText(
+      /Confirm password/i
+    );
+    expect(confirmPasswordInput).toBeInTheDocument();
 
     const signUpButton = await screen.findByText(/Sign Up/i);
     expect(signUpButton).toBeInTheDocument();
@@ -92,6 +105,9 @@ describe("<SignUp />", () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
       fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
+      fireEvent.change(confirmPasswordInput, {
+        target: { value: "Test123456" },
+      });
       fireEvent.click(signUpButton);
     });
 
@@ -123,8 +139,13 @@ describe("<SignUp />", () => {
     const phoneInput = await screen.findByPlaceholderText(/Mobile phone/i);
     expect(phoneInput).toBeInTheDocument();
 
-    const passwordInput = await screen.findByPlaceholderText(/Password/i);
+    const passwordInput = await screen.findByPlaceholderText(/^Password/i);
     expect(passwordInput).toBeInTheDocument();
+
+    const confirmPasswordInput = await screen.findByPlaceholderText(
+      /Confirm password/i
+    );
+    expect(confirmPasswordInput).toBeInTheDocument();
 
     const signUpButton = await screen.findByText(/Sign Up/i);
     expect(signUpButton).toBeInTheDocument();
@@ -133,6 +154,10 @@ describe("<SignUp />", () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
       fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
+      fireEvent.change(confirmPasswordInput, {
+        target: { value: "Test123456" },
+      });
+
       fireEvent.click(signUpButton);
     });
 
@@ -162,8 +187,13 @@ describe("<SignUp />", () => {
     const phoneInput = await screen.findByPlaceholderText(/Mobile phone/i);
     expect(phoneInput).toBeInTheDocument();
 
-    const passwordInput = await screen.findByPlaceholderText(/Password/i);
+    const passwordInput = await screen.findByPlaceholderText(/^Password/i);
     expect(passwordInput).toBeInTheDocument();
+
+    const confirmPasswordInput = await screen.findByPlaceholderText(
+      /Confirm password/i
+    );
+    expect(confirmPasswordInput).toBeInTheDocument();
 
     const signUpButton = await screen.findByText(/Sign Up/i);
     expect(signUpButton).toBeInTheDocument();
@@ -172,6 +202,10 @@ describe("<SignUp />", () => {
       fireEvent.change(emailInput, { target: { value: "test@test.com" } });
       fireEvent.change(phoneInput, { target: { value: "+48512051857" } });
       fireEvent.change(passwordInput, { target: { value: "Test123456" } });
+      fireEvent.change(confirmPasswordInput, {
+        target: { value: "Test123456" },
+      });
+
       fireEvent.click(signUpButton);
       await new Promise<void>((res) => setTimeout(() => res(), 500));
       fireEvent.click(signUpButton);

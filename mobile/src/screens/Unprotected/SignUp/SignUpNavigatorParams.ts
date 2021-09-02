@@ -9,7 +9,7 @@ export type SignUpNavigatorParams = {
   [SignUpRoute]: undefined;
   [SignUpCreateAccountRoute]: undefined;
   [SignUpVerificationRoute]: {
-    phoneNumber: string | number;
+    email: string;
   };
   [SignUpSuccessRoute]: undefined;
 };

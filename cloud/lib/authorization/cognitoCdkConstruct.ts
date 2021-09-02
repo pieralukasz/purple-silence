@@ -15,8 +15,7 @@ interface CognitoProps {
   defaultDomain: string;
   envName: EnvName;
   pinpointArn: string;
-  emailTemplatesBucket: s3.Bucket;
-  emailTranslatedTextsBucket: s3.Bucket;
+  notificationTemplatesTranslationsBucket: s3.Bucket;
   defaultSesSenderEmail: string;
 }
 
@@ -29,8 +28,7 @@ export class CognitoCdkConstruct extends cdk.Construct {
       defaultDomain,
       envName,
       pinpointArn,
-      emailTemplatesBucket,
-      emailTranslatedTextsBucket,
+      notificationTemplatesTranslationsBucket,
       defaultSesSenderEmail,
     }: CognitoProps
   ) {
@@ -46,11 +44,6 @@ export class CognitoCdkConstruct extends cdk.Construct {
       accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
       autoVerify: {
         email: true,
-      },
-      mfa: cognito.Mfa.OPTIONAL,
-      mfaSecondFactor: {
-        sms: true,
-        otp: false,
       },
       passwordPolicy: {
         minLength: 10,
@@ -120,8 +113,7 @@ export class CognitoCdkConstruct extends cdk.Construct {
       {
         defaultDomain,
         envName,
-        emailTemplatesBucket,
-        emailTranslatedTextsBucket,
+        notificationTemplatesTranslationsBucket,
       }
     );
 

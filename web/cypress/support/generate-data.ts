@@ -5,7 +5,7 @@ export const createRandomUser = () => ({
     999999
   )}@simulator.amazonses.com`,
   correctPhone: faker.phone.phoneNumber("+48 79# ### ###"),
-  correctPassword: Cypress.env("PASSWORD"),
+  correctPassword: Cypress.env("default_password"),
   wrongEmail: faker.lorem.words(1),
   wrongPhone: faker.phone.phoneNumber(),
   tooShortPassword: faker.internet.password(9, false, /^[A-Za-z]*$/, "8Aa"),

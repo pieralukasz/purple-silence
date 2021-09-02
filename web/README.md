@@ -41,18 +41,6 @@ yarn cy:open
 yarn cy:run
 ```
 
-#### Run Cypress smoke tests in the headless mode:
-
-```
-yarn cy:run:smoke
-```
-
-#### Run Cypress regression tests in the headless mode:
-
-```
-yarn cy:run:regression
-```
-
 ## Code coverage
 
 If you want to generate code coverage report after the Cypress tests you should run the server via command:
@@ -112,13 +100,14 @@ yarn cy:lint
 
 - [`@cypress/code-coverage`](https://www.npmjs.com/package/@cypress/code-coverage) - it generates a code coverage report after Cypress tests
 - [`@cypress/instrument-cra`](https://www.npmjs.com/package/@cypress/instrument-cra) - instrument code without ejecting react-scripts
-- [`cypress-dotenv`](https://www.npmjs.com/package/cypress-dotenv) - plugin that enables compatability with `dotenv` package
 - [`cypress-file-upload`](https://www.npmjs.com/package/cypress-file-upload) - file upload testing made easy with Cypress
 - [`cypress-localstorage-commands`](https://www.npmjs.com/package/cypress-localstorage-commands) - it allows preserving localStorage between tests
 - [`cypress-xpath`](https://www.npmjs.com/package/cypress-xpath) - it adds XPath command to Cypress test runner
+- [`dotenv`](https://www.npmjs.com/package/dotenv) - plugin that enables to load environment variables from .env.test file into process.env
 - [`eslint-plugin-cypress`](https://www.npmjs.com/package/eslint-plugin-cypress) - an ESLint plugin for your Cypress tests
 - [`faker`](https://www.npmjs.com/package/faker) - it generates fake data for tests
 - [`mochawesome`](https://www.npmjs.com/package/mochawesome) - a custom reporter for use to generate tests report after test run
 - [`mochawesome-merge`](https://www.npmjs.com/package/mochawesome-merge) - it merges several Mochawesome JSON reports
 - [`mochawesome-report-generator`](https://www.npmjs.com/package/mochawesome-report-generator) - it generates HTML reports from mochawesome reporter.
 - [`@percy/cypress`](https://www.npmjs.com/package/@percy/cypress) - detecting and reviewing visual UI changes by making snapshots
+

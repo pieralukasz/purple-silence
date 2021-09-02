@@ -55,7 +55,7 @@ const DialogSelector: React.FC<DialogSelectorProps> = ({
         <Dialog visible={visible} onDismiss={hideDialog}>
           <Dialog.Title>{dialogTitle}</Dialog.Title>
           <Dialog.Content>
-            {dialogSubtitle && <Paragraph>HELLO</Paragraph>}
+            {dialogSubtitle && <Paragraph>{dialogSubtitle}</Paragraph>}
             <RadioGroup
               radioButtons={radioButtons}
               onPress={onPressRadioButton}

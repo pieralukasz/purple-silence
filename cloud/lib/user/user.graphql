@@ -1,0 +1,56 @@
+type User {
+  id: ID!
+  email: String!
+  phoneNumber: String!
+  enabled: Boolean!
+  verified: Boolean!
+  updatedAt: String!
+}
+
+type GetUsersResponse {
+  items: [User!]!
+  paginationToken: String
+  estimatedNumberOfUsers: Int
+}
+
+input FilterBy {
+  verified: Boolean
+  enabled: Boolean
+}
+
+input GetUsersArgs {
+  searchBy: String
+  limit: Int!
+  paginationToken: String
+  filterBy: FilterBy
+}
+
+input UpdateUserInput {
+  id: ID!
+  email: String
+  phoneNumber: String
+}
+
+input CreateUserInput {
+  email: String!
+  phoneNumber: String!
+  verified: Boolean
+}
+
+input StatusInput {
+  id: ID!
+  enabled: Boolean!
+}
+
+extend type Query {
+  getUsers(getUsersArgs: GetUsersArgs): GetUsersResponse!
+    @aws_auth(cognito_groups: ["admin"])
+}
+
+extend type Mutation {
+  updateUser(updateUserInput: UpdateUserInput): User!
+  createUser(createUserInput: CreateUserInput): User!
+    @aws_auth(cognito_groups: ["admin"])
+  setUserStatus(statusInput: StatusInput): User!
+    @aws_auth(cognito_groups: ["admin"])
+}

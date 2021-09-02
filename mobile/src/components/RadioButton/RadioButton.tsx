@@ -36,11 +36,11 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 
   // eslint-disable-next-line consistent-return
   const handlePress = (): null | undefined => {
-    if (onPress) {
-      onPress(id);
-    }
     if (disabled) {
       return null;
+    }
+    if (onPress) {
+      onPress(id);
     }
   };
 

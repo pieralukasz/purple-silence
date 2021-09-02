@@ -1,12 +1,10 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Box, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Grid, Typography } from "@material-ui/core";
 
-import Button from "./Button";
-import useStyles from "./styles";
+import Link from "@components/Link";
 
 interface Props {
   buttonText: string;
@@ -22,17 +20,21 @@ const AuthBottomBar: React.FC<Props> = ({
   dataTestId,
 }) => {
   const { t } = useTranslation("auth");
-  const classes = useStyles();
 
   return (
-    <Box py={2.125} className={classes.bar}>
-      <Grid alignItems="center" justify="center" spacing={2} container>
+    <Box py={4.75}>
+      <Grid container alignItems="center" justify="center" spacing={2}>
         <Grid item>
-          <Typography className={classes.text}>{t(text)}</Typography>
+          <Typography>{t(text)}</Typography>
         </Grid>
         <Grid item>
-          <Link to={buttonLinkPath} className={classes.link}>
-            <Button dataTestId={dataTestId}>{buttonText}</Button>
+          <Link to={buttonLinkPath} underline="none">
+            <Button
+              data-testid={dataTestId}
+              variant="outlined"
+              color="secondary">
+              {buttonText}
+            </Button>
           </Link>
         </Grid>
       </Grid>

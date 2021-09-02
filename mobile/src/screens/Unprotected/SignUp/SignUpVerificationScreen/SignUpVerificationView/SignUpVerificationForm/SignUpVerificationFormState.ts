@@ -1,5 +1,5 @@
 interface SignUpVerificationFormState {
-  verificationCode: string | number;
+  verificationCode: string;
 }
 
 export default SignUpVerificationFormState;

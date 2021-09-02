@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { Auth } from "aws-amplify";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RouteProp } from "@react-navigation/native";
 
@@ -31,20 +32,21 @@ const SignUpVerificationScreen: React.FC<SignUpVerificationProps> = ({
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { phoneNumber } = route.params;
+  const { email } = route.params;
 
   const onVerifyCode = useCallback(
-    (data: SignUpVerificationFormState) => {
+    async ({ verificationCode }: SignUpVerificationFormState) => {
       try {
         setLoading(true);
-        console.log(data);
+        await Auth.confirmSignUp(email, verificationCode);
         setLoading(false);
         navigation.navigate(SignUpSuccessRoute);
-      } catch {
+      } catch (e) {
+        console.error(e);
         setLoading(false);
       }
     },
-    [navigation]
+    [navigation, email]
   );
 
   return (
@@ -52,7 +54,7 @@ const SignUpVerificationScreen: React.FC<SignUpVerificationProps> = ({
       onSubmit={onVerifyCode}
       onResendCode={() => {}}
       loading={loading}
-      phoneNumber={phoneNumber}
+      email={email}
     />
   );
 };

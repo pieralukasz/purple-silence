@@ -64,11 +64,11 @@ const NavigationDrawer: React.FC<Props> = ({
         justifyContent="space-between"
         height="100%">
         <Box>
-          <AppBar position="static">
+          <AppBar position="static" color="default">
             <Toolbar>
               <IconButton
                 edge="start"
-                data-testid="close-side-menu-button"
+                data-testid="close-button-in-side-menu"
                 className={classes.menuButton}
                 color="inherit"
                 aria-label="menu"
@@ -84,15 +84,27 @@ const NavigationDrawer: React.FC<Props> = ({
               <>
                 <ListItem
                   button
-                  data-testid="admin-button-in-side-menu"
+                  data-testid="feedbacks-button-in-side-menu"
                   component={NavLink}
-                  to={Paths.ADMIN_PATH}
+                  to={Paths.ADMIN_FEEDBACKS_PATH}
                   exact
                   activeClassName={classes.active}>
                   <ListItemIcon>
                     <SupervisorAccountIcon />
                   </ListItemIcon>
-                  <ListItemText primary={t("Admin")} />
+                  <ListItemText primary={t("Feedbacks")} />
+                </ListItem>
+                <ListItem
+                  button
+                  data-testid="users-managment-button-in-side-menu"
+                  component={NavLink}
+                  to={Paths.ADMIN_USERS_AND_GROUPS_PATH}
+                  exact
+                  activeClassName={classes.active}>
+                  <ListItemIcon>
+                    <SupervisorAccountIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={t("Users and Groups")} />
                 </ListItem>
                 <Divider />
               </>

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import Paths from "@routing/paths";
 
-import PageLayout from "@layouts/PageLayout";
+import AuthLayout from "@layouts/AuthLayout";
 
 import AuthBottomBar from "@components/AuthBottomBar";
 
@@ -22,13 +22,13 @@ const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
   const { t } = useTranslation("auth");
 
   return (
-    <PageLayout>
+    <AuthLayout>
       <Helmet>
         <title>{t("Sign in")}</title>
       </Helmet>
       <Container maxWidth="xs">
         <Box px={2} boxSizing="border-box">
-          <Typography color="textPrimary" gutterBottom variant="h1">
+          <Typography color="textPrimary" gutterBottom variant="h4">
             {t("Sign in")}
           </Typography>
         </Box>
@@ -40,7 +40,7 @@ const SignInView: React.FC<Props> = ({ error, loading, onSignIn }) => {
         buttonText={t("Sign up")}
         dataTestId="go-to-sign-up-page-button"
       />
-    </PageLayout>
+    </AuthLayout>
   );
 };
 

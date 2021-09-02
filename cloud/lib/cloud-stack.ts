@@ -7,7 +7,7 @@ import { PinpointCdkConstruct } from "@analytics/pinpointCdkConstruct";
 import { CognitoCdkConstruct } from "@authorization/cognitoCdkConstruct";
 import { AmplifyCdkConstruct } from "@common/amplifyCdkConstruct";
 import { AppSyncCdkConstruct } from "@common/appSyncCdkConstruct";
-import { EmailSendingCdkConstruct } from "@common/emailSending/emailSendingCdkConstruct";
+import { NotificationsSendingCdkConstruct } from "@common/notificationsSending/notificationsSendingCdkConstruct";
 
 import { EnvName } from "@enums/EnvName";
 
@@ -56,8 +56,8 @@ export class CloudStack extends cdk.Stack {
     );
 
     // Email sending
-    const { emailTemplatesBucket, emailTranslatedTextsBucket } =
-      new EmailSendingCdkConstruct(this, `${envName}-EmailSending`, {
+    const { notificationTemplatesTranslationsBucket } =
+      new NotificationsSendingCdkConstruct(this, `${envName}-EmailSending`, {
         envName,
         defaultSesSenderEmail,
         defaultDomain,
@@ -71,8 +71,7 @@ export class CloudStack extends cdk.Stack {
         defaultDomain,
         envName,
         pinpointArn,
-        emailTemplatesBucket,
-        emailTranslatedTextsBucket,
+        notificationTemplatesTranslationsBucket,
         defaultSesSenderEmail,
       }
     );

@@ -6,16 +6,24 @@ This is the mobile part of the PurpleSilence app.
 
 Use yarn. There is high likelihood that `npm install` won't resolve due to some odd dependency issues. `yarn` provides no such trouble.
 
-
 ## Setup
 
 To start development, please set up your environment for development of React Native app with use of React Native CLI.
 Follow the official [instructions](https://reactnative.dev/docs/environment-setup) for installing dependencies for React Native CLI.
 Execute the statement without Creating a new application.
 
+After all the relevant packages have been properly installed, you need to download one more global package.
+
+`npm install react-native-rename -g`
+
+In your main directory run command:
+
+`npx react-native-rename "PurpleSilence" -b com.purplesilence`
+
+This will allow us to change the name of the global application name from `mobile` to the `PurpleSilence`.
+
 After installing all the necessary packages, run the `yarn install` command, and then `cd ios && pod install`.
 Remember that, when you add a new package, execute the command `yarn clear:ios`
-
 
 ### Problems
 
@@ -54,7 +62,6 @@ Add to envs:
 REACT_APP_PURPLE_SILENCE_LOCIZE_API_KEY=<your_admin_api_key>
 REACT_APP_PURPLE_SILENCE_LOCIZE_PROJECT_ID=<your_project_id>
 ```
-
 
 # E2E tests
 

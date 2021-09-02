@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import _ from "lodash";
 
@@ -15,10 +15,6 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   const [radioButtonsLocal, setRadioButtonsLocal] =
     useState<RadioButtonProps[]>(radioButtons);
 
-  if (!_.isEqual(radioButtons, radioButtonsLocal)) {
-    setRadioButtonsLocal(radioButtons);
-  }
-
   function handlePress(id: string) {
     // eslint-disable-next-line no-restricted-syntax
     for (const button of radioButtonsLocal) {
@@ -30,6 +26,12 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
       onPress(radioButtonsLocal);
     }
   }
+
+  useEffect(() => {
+    if (!_.isEqual(radioButtons, radioButtonsLocal)) {
+      setRadioButtonsLocal(radioButtons);
+    }
+  }, [radioButtons, radioButtonsLocal]);
 
   return (
     <View style={[styles.container, { flexDirection: layout }, containerStyle]}>

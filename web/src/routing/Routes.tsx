@@ -12,10 +12,13 @@ import PrivateRoute from "./PrivateRoute";
 
 import Paths from "./paths";
 
-const Admin = lazy(() => import("./routes/Admin"));
+const Feedbacks = lazy(() => import("./routes/admin/Feedbacks"));
+const UsersAndGroups = lazy(() => import("./routes/admin/UsersAndGroups"));
+
 const ConfirmReset = lazy(() => import("./routes/ConfirmReset"));
 const ConfirmSignUp = lazy(() => import("./routes/ConfirmSignUp"));
 const CreateNewPassword = lazy(() => import("./routes/CreateNewPassword"));
+const RequestNewPassword = lazy(() => import("./routes/RequestNewPassword"));
 const Error = lazy(() => import("./routes/Error"));
 const ForgotPassword = lazy(() => import("./routes/ForgotPassword"));
 const Help = lazy(() => import("./routes/Help"));
@@ -49,6 +52,10 @@ const Routes: React.FC = () => {
         component={CreateNewPassword}
       />
       <NonPrivateRoute
+        path={Paths.REQUEST_NEW_PASSWORD_PATH}
+        component={RequestNewPassword}
+      />
+      <NonPrivateRoute
         path={Paths.FORGOT_PASSWORD_PATH}
         component={ForgotPassword}
       />
@@ -62,7 +69,11 @@ const Routes: React.FC = () => {
       {/* END AUTHORIZED-COMMON */}
 
       {/* START ADMIN */}
-      <AdminRoute path={Paths.ADMIN_PATH} component={Admin} />
+      <AdminRoute path={Paths.ADMIN_FEEDBACKS_PATH} component={Feedbacks} />
+      <AdminRoute
+        path={Paths.ADMIN_USERS_AND_GROUPS_PATH}
+        component={UsersAndGroups}
+      />
       {/* END ADMIN */}
 
       {/* START HELP/SETTINGS */}

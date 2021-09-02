@@ -2,4 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # Run prettier before the commit
-#yarn lint && yarn types-check && yarn format-check
+cd mobile
+yarn format
+yarn dt:format

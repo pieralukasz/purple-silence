@@ -10,6 +10,8 @@ import {
   REACT_APP_PURPLE_SILENCE_AWS_PINPOINT_REGION,
 } from "@env";
 
+console.log(REACT_APP_PURPLE_SILENCE_AWS_PINPOINT_REGION);
+
 export const authConfig = {
   Auth: {
     identityPoolId: REACT_APP_PURPLE_SILENCE_AWS_COGNITO_IDENTITY_POOL,

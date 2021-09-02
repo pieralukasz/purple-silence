@@ -74,7 +74,7 @@ const SettingsMainView: React.FC<SettingsViewProps> = ({
   return (
     <ScreenLayout
       viewStyles={{ paddingTop: top + defaultTheme.spacing.emptyHeader }}
-      title="Settings"
+      title={t("Settings")}
       scrollEnabled>
       <View>
         <DialogSelector

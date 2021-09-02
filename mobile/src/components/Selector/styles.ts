@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
   },
   value: {
     marginTop: 4,
-    color: "#444444",
   },
   divider: {
     marginTop: theme.spacing.default * 1.5,
