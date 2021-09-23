@@ -45,6 +45,7 @@ const createUser = async (input: CreateUserInput): Promise<User | null> => {
 
     return user ? { ...user, id: payload.User!.Username! } : user;
   } catch (e) {
+    // @ts-ignore
     throw new ErrorUser(e);
   }
 };

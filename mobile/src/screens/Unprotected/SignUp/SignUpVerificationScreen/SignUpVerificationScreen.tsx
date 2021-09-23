@@ -49,10 +49,20 @@ const SignUpVerificationScreen: React.FC<SignUpVerificationProps> = ({
     [navigation, email]
   );
 
+  const onResendCode = useCallback(async () => {
+    try {
+      setLoading(true);
+      await Auth.resendSignUp(email);
+      setLoading(false);
+    } catch {
+      setLoading(false);
+    }
+  }, [email]);
+
   return (
     <SignUpVerificationView
       onSubmit={onVerifyCode}
-      onResendCode={() => {}}
+      onResendCode={onResendCode}
       loading={loading}
       email={email}
     />

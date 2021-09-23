@@ -1,13 +1,18 @@
 import React, { useCallback, useState } from "react";
-
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+
+import { Auth } from "aws-amplify";
+
 import { ForgotPasswordNavigatorParams } from "@screens/Unprotected/ForgotPassword/ForgotPasswordNavigatorParams";
 import {
   ForgotPasswordResetRoute,
   ForgotPasswordVerificationRoute,
 } from "@screens/Unprotected/ForgotPassword/routes";
 
+import removeAllWhitespaces from "@utils/removeAllWhitespaces";
+
+import ForgotPasswordVerificationFormState from "./ForgotPasswordVerificationView/ForgotPasswordVerificationForm/ForgotPasswordVerificationFormState";
 import ForgotPasswordVerificationView from "./ForgotPasswordVerificationView";
 
 type ForgotPasswordVerificationNavigationProp = StackNavigationProp<
@@ -26,35 +31,42 @@ interface ForgotPasswordVerificationProps {
 }
 
 const ForgotPasswordVerificationScreen: React.FC<ForgotPasswordVerificationProps> =
-  ({ navigation }) => {
+  ({ navigation, route }) => {
+    const { email } = route.params;
     const [loading, setLoading] = useState<boolean>(false);
 
-    const onSubmit = useCallback(() => {
-      try {
-        setLoading(true);
-        navigation.navigate(ForgotPasswordResetRoute);
-        setLoading(false);
-      } catch {
-        setLoading(false);
-      }
-    }, [navigation]);
+    const onSubmit = useCallback(
+      ({ verificationCode }: ForgotPasswordVerificationFormState) => {
+        try {
+          setLoading(true);
+          navigation.navigate(ForgotPasswordResetRoute, {
+            email,
+            verificationCode,
+          });
+          setLoading(false);
+        } catch {
+          setLoading(false);
+        }
+      },
+      [email, navigation]
+    );
 
-    const onResendCode = useCallback(() => {
+    const onResendCode = useCallback(async () => {
       try {
         setLoading(true);
-        console.log("RESEND CODE");
+        await Auth.forgotPassword(removeAllWhitespaces(email).toLowerCase());
         setLoading(false);
       } catch {
         setLoading(false);
       }
-    }, []);
+    }, [email]);
 
     return (
       <ForgotPasswordVerificationView
         onSubmit={onSubmit}
         onResendCode={onResendCode}
         loading={loading}
-        phoneNumber="+48 3213123213"
+        email={email}
       />
     );
   };

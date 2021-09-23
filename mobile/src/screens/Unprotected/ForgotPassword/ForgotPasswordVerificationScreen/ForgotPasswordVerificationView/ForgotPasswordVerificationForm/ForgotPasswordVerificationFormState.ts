@@ -1,5 +1,5 @@
 interface ForgotPasswordVerificationFormState {
-  verificationCode: string | number;
+  verificationCode: string;
 }
 
 export default ForgotPasswordVerificationFormState;

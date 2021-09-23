@@ -28,7 +28,7 @@ const ForgotPasswordEmailView: React.FC<ForgotPasswordEmailViewProps> = ({
     <ScreenLayout title="Forgot your password?" loading={loading}>
       <Text style={styles.subtitle}>
         {t(
-          "Please write email you used during create account process. We will send you a verification code via sms"
+          "Please write email you used during create account process. We will send you a verification code via email"
         )}
       </Text>
       <ForgotPasswordEmailForm onSubmit={onSubmit} />

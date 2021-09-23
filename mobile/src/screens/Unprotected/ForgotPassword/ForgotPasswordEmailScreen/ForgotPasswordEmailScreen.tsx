@@ -2,10 +2,13 @@ import React, { useCallback, useState } from "react";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { CompositeNavigationProp, RouteProp } from "@react-navigation/native";
 
+import { Auth } from "aws-amplify";
+
 import { ForgotPasswordRoute, SignInRoute } from "@screens/Unprotected/routes";
 import { UnprotectedNavigatorParams } from "@screens/Unprotected/UnprotectedNavigatorParams";
 
 import useResetNavigation from "@hooks/useResetNavigation";
+import removeAllWhitespaces from "@utils/removeAllWhitespaces";
 
 import { ForgotPasswordNavigatorParams } from "../ForgotPasswordNavigatorParams";
 import {
@@ -13,6 +16,7 @@ import {
   ForgotPasswordVerificationRoute,
 } from "../routes";
 
+import ForgotPasswordEmailState from "./ForgotPasswordEmailView/ForgotPasswordEmailForm/ForgotPasswordEmailState";
 import ForgotPasswordEmailView from "./ForgotPasswordEmailView";
 
 type ForgotPasswordEmailNavigationProp = CompositeNavigationProp<
@@ -23,14 +27,8 @@ type ForgotPasswordEmailNavigationProp = CompositeNavigationProp<
   StackNavigationProp<UnprotectedNavigatorParams, typeof ForgotPasswordRoute>
 >;
 
-type ForgotPasswordEmailRouteProp = RouteProp<
-  ForgotPasswordNavigatorParams,
-  typeof ForgotPasswordEmailRoute
->;
-
 interface ForgotPasswordEmailProps {
   navigation: ForgotPasswordEmailNavigationProp;
-  route: ForgotPasswordEmailRouteProp;
 }
 
 const ForgotPasswordEmailScreen: React.FC<ForgotPasswordEmailProps> = ({
@@ -40,15 +38,21 @@ const ForgotPasswordEmailScreen: React.FC<ForgotPasswordEmailProps> = ({
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onSubmit = useCallback(() => {
-    try {
-      setLoading(true);
-      navigation.navigate(ForgotPasswordVerificationRoute);
-      setLoading(false);
-    } catch {
-      setLoading(false);
-    }
-  }, [navigation]);
+  const onSubmit = useCallback(
+    async ({ email }: ForgotPasswordEmailState) => {
+      try {
+        setLoading(true);
+        await Auth.forgotPassword(removeAllWhitespaces(email).toLowerCase());
+        setLoading(false);
+        navigation.navigate(ForgotPasswordVerificationRoute, {
+          email,
+        });
+      } catch {
+        setLoading(false);
+      }
+    },
+    [navigation]
+  );
 
   return (
     <ForgotPasswordEmailView

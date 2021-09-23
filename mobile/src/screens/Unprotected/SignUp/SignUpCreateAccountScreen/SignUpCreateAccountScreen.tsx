@@ -50,6 +50,7 @@ const SignUpCreateAccountScreen: React.FC<SignUpCreateAccountProps> = ({
             locale: i18n.language,
           },
         });
+
         navigation.navigate(SignUpVerificationRoute, {
           email,
         });
@@ -61,11 +62,15 @@ const SignUpCreateAccountScreen: React.FC<SignUpCreateAccountProps> = ({
     [i18n.language, navigation]
   );
 
+  const onSignIn = useCallback(() => {
+    resetNavigation(SignInRoute);
+  }, [resetNavigation]);
+
   return (
     <SignUpCreateAccountView
       onSubmit={onSignUp}
       loading={loading}
-      onSignIn={() => resetNavigation(SignInRoute)}
+      onSignIn={onSignIn}
     />
   );
 };

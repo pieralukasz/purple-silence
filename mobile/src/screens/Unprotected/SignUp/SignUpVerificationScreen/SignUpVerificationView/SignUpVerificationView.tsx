@@ -16,14 +16,14 @@ import styles from "./styles";
 
 interface SignUpVerificationViewProps
   extends CommonViewProps<SignUpVerificationFormState> {
-  phoneNumber: string | number;
+  email: string;
   onResendCode: () => void;
 }
 
 const SignUpVerificationView: React.FC<SignUpVerificationViewProps> = ({
   onSubmit,
   loading,
-  phoneNumber,
+  email,
   onResendCode,
 }) => {
   const { t } = useTranslation(NAMESPACE_AUTH);
@@ -35,7 +35,7 @@ const SignUpVerificationView: React.FC<SignUpVerificationViewProps> = ({
           {t("A verification code has been sent to:")}
         </Text>
         <Text style={{ ...styles.textInfo, ...styles.textPhoneNumber }}>
-          {phoneNumber}
+          {email}
         </Text>
         <Text style={styles.textInfo}>
           {t("Please, enter it below, to verify your account")}.

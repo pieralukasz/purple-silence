@@ -98,7 +98,7 @@ const VerifyEmail: React.FC = () => {
             <Grid item xs={12}>
               <Button
                 data-testid="resend-email-button"
-                onClick={handleResendEmail}
+                onClick={() => handleResendEmail()}
                 disabled={disabled}
                 variant="contained"
                 color="primary"

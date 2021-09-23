@@ -9,7 +9,12 @@ import {
 export type ForgotPasswordNavigatorParams = {
   [ForgotPasswordRoute]: undefined;
   [ForgotPasswordEmailRoute]: undefined;
-  [ForgotPasswordVerificationRoute]: undefined;
-  [ForgotPasswordResetRoute]: undefined;
+  [ForgotPasswordVerificationRoute]: {
+    email: string;
+  };
+  [ForgotPasswordResetRoute]: {
+    email: string;
+    verificationCode: string;
+  };
   [ForgotPasswordSuccessRoute]: undefined;
 };

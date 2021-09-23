@@ -38,7 +38,7 @@ const SignIn: React.FC = () => {
       });
 
       setLoading(false);
-      setError(e.message);
+      if (e) setError("error");
     }
   };
 

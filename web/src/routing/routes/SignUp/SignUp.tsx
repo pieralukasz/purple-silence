@@ -50,7 +50,7 @@ const SignUp: React.FC = () => {
       setTimeout(() => {
         localStorage.removeItem(NUMBER_PREFIX_INPUT_KEY);
       }, 500);
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === "UsernameExistsException") {
         history.push(Paths.VERIFY_EMAIL_PATH, { email });
       }

@@ -20,7 +20,7 @@ const CreateNewPassword: React.FC = () => {
         await Auth.forgotPasswordSubmit(username, code, formData.password);
         history.push(Paths.SIGN_IN_PATH, { keepNotification: true });
       } catch (e) {
-        throw new Error(e);
+        throw new Error(String(e));
       }
     }
   };

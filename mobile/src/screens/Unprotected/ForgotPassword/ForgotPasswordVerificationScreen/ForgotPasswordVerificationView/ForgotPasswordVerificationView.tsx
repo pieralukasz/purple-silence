@@ -15,12 +15,12 @@ import styles from "./styles";
 
 interface ForgotPasswordVerificationCodeViewProps
   extends CommonViewProps<ForgotPasswordVerificationFormState> {
-  phoneNumber: string;
+  email: string;
   onResendCode: () => void;
 }
 
 const ForgotPasswordVerificationView: React.FC<ForgotPasswordVerificationCodeViewProps> =
-  ({ onSubmit, phoneNumber, onResendCode, loading }) => {
+  ({ onSubmit, email, onResendCode, loading }) => {
     const { t } = useTranslation(NAMESPACE_AUTH);
 
     return (
@@ -30,7 +30,7 @@ const ForgotPasswordVerificationView: React.FC<ForgotPasswordVerificationCodeVie
             {t("A verification code has been sent to:")}
           </Text>
           <Text style={{ ...styles.textInfo, ...styles.textPhoneNumber }}>
-            {phoneNumber}
+            {email}
           </Text>
           <Text style={styles.textInfo}>
             {t("Please, enter it below, to verify your account.")}
